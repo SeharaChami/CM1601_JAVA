@@ -6,9 +6,11 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
-            File myfile = new File("inventory_legacy.txt");
+            File itemfile = new File("inventory_legacy.txt");
+           // File dealerfile = new File("dealers_legacy.txt");
 
-            DataCleaner cleaner = new DataCleaner(myfile);
-
+            DataCleaner dataset = new DataCleaner(itemfile);
+           // DataCleaner dealerset = new DataCleaner(dealerfile);
+            Inventory inventory = new Inventory(dataset);
     }
 }

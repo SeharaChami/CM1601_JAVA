@@ -2,11 +2,9 @@ package tuktukjava;
 
 public class Item {
     String[] item;
-    public Item(String line){
-        this.item = line.split("[;,|]");
-        for(int i = 0;i< item.length;i++){
-            System.out.printf("%-30s|",item[i]);
-        }
+
+    public Item(String[] line){
+        this.item = line;
     }
 
     public void LowStockMon(){
