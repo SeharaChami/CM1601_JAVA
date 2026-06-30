@@ -1,14 +1,14 @@
 package tuktukjava;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Inventory {
-    DataCleaner dataset;
+    File itemfile = new File("inventory_legacy.txt");
+    DataCleaner dataset = new DataCleaner(itemfile);
     List<Item> formattedList = new ArrayList<>();
-    public Inventory(DataCleaner dataset) {
-        this.dataset = dataset;
-        System.out.println(dataset);
+    public Inventory() {
 
         this.formattedList = dataset.returnItem();
 

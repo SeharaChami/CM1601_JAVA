@@ -24,8 +24,15 @@ public class DataCleaner {
             System.out.println("File is not found..");
         }
         for (int i = 0; i< lineList.size();i++){
-            String[] newLine = lineList.get(i).trim().split("[;,|]");
+            String[] newLine = lineList.get(i).trim().split("[;,|]",-1);
 
+            for (int j = 0 ; j < newLine.length;j++){
+                if(newLine[j].equals(" ")){
+                    newLine[j] = "NoData";
+                }else {
+                    newLine[j].trim();
+                }
+            }
             if(newLine.length == 8){
                 try {
                     String sprice = priceFormat(newLine[3]);
@@ -35,17 +42,13 @@ public class DataCleaner {
                 }catch (NumberFormatException | IllegalFormatConversionException e ) {
                     System.out.println("no price value..");
                 }
-            }for (int j = 0 ; j< newLine.length;j++){
-                if(newLine[j].equals(" ")){
-                    newLine[j] = "NoData";
-                }
+            } else if (newLine.length == 4) {
+
             }
             formattedList.add(newLine);
         }
-        for (int j = 0 ; j<formattedList.size();j++){
-            System.out.println(formattedList.get(j)[1]);
-        }
     }
+
     public String priceFormat(String stringPrice){
         String finalPrice = "";
         boolean found = false;
@@ -76,7 +79,7 @@ public class DataCleaner {
                 formattedItems.add(item);
             }
         } catch(ArrayIndexOutOfBoundsException e ){
-            System.out.println("Index issue..");
+            System.out.println("System issue identified..");
         }
         return formattedItems;
     }
