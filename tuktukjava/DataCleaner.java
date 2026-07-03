@@ -42,8 +42,6 @@ public class DataCleaner {
                 }catch (NumberFormatException | IllegalFormatConversionException e ) {
                     System.out.println("no price value..");
                 }
-            } else if (newLine.length == 4) {
-
             }
             formattedList.add(newLine);
         }
@@ -66,7 +64,7 @@ public class DataCleaner {
         return finalPrice;
     }
 
-    public List<Item> returnItem(){
+    public List<Item> returnItems(){
         List<Item> formattedItems = new ArrayList<>();
 
         try {
@@ -82,6 +80,24 @@ public class DataCleaner {
             System.out.println("System issue identified..");
         }
         return formattedItems;
+    }
+
+    public List<Dealer> returnDealers(){
+        List<Dealer> formattedDealers = new ArrayList<>();
+
+        try {
+            for (int i = 0; i < formattedList.size(); i++) {
+                String[] tempList = new String[4];
+                for (int j = 0; j < 4; j++) {
+                    tempList[j] = formattedList.get(i)[j];
+                }
+                Dealer dealer = new Dealer(tempList);
+                formattedDealers.add(dealer);
+            }
+        } catch(ArrayIndexOutOfBoundsException e ){
+            System.out.println("System issue identified..");
+        }
+        return formattedDealers;
     }
 
 }
