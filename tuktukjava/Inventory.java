@@ -18,12 +18,15 @@ public class Inventory {
     }
 
     public void getInventory(){
+        int itemcount = 0;
         for(Item element : formattedList){
             for (String part : element.item){
                 System.out.print(part+"|");
             }
+            itemcount += Integer.parseInt(element.item[4]);
             System.out.println();
         }
+        System.out.println("Number of items : "+itemcount);
     }
     public void add(){
         Item item;
