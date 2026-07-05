@@ -9,24 +9,27 @@ public class Inventory {
 
     DataCleaner dataset;
     List<Item> formattedList = new ArrayList<>();
+    int fieldcount = 8 ;
     public Inventory(File itemfile) {
-        dataset =  new DataCleaner(itemfile);
+
+        dataset =  new DataCleaner(itemfile,fieldcount);
         this.formattedList = dataset.returnItems();
 
     }
 
-    public void displayInventory(){
-        for(int i = 0;i < formattedList.size();i++){
-            for (int j = 0;j< formattedList.get(i).item.length;j++){
-                System.out.print(formattedList.get(i).item[j]);
+    public void getInventory(){
+        for(Item element : formattedList){
+            for (String part : element.item){
+                System.out.print(part+"|");
             }
             System.out.println();
         }
     }
-    public void Add(){
+    public void add(){
         Item item;
         String[] part = new String[8];
         part[0] = generateItemCode();
+        System.out.println("Your item code is "+part[0]);
 
         String partName;
         do {
@@ -108,20 +111,39 @@ public class Inventory {
         formattedList.add(item);
     }
 
+    public void delete(String code){
+        for (Item element : formattedList){
+            if (element.item[0].equals(code)){
+                formattedList.remove(element);
+                break;
+            }
+        }
+    }
+    public void lowStockMon(){
+        int limit = 10;
+        for(Item element : formattedList){
+            int qty = Integer.parseInt(element.item[4].trim());
+            if(qty < limit && qty > 0){
+                System.out.println(element.item[0]);
+            }
+        }
+    }
+    public void Update(){
+
+    }
     public String generateItemCode(){
         String itemCode = "";
         int last = formattedList.size()-1;
         String lastCode = formattedList.get(last).item[0];
         String temp = "";
         boolean flag = false;
-        for (int i = 0; i < lastCode.length();i++){
-            char j = lastCode.charAt(i);
-            if(Character.isDigit(j)){
-                System.out.println(Character.getNumericValue(j));
-                temp = temp + Character.toString(j);
-            }
+        for (int i = 1; i < lastCode.length();i++){
+            temp = temp+lastCode.charAt(i);
         }
-        System.out.println(temp);
+        last = (Integer.parseInt(temp)+1);
+        if(last > 9){
+            itemCode = "P0"+last;
+        }else itemCode = "P00"+last;
         return itemCode;
     }
 

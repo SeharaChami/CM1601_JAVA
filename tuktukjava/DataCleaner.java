@@ -1,13 +1,17 @@
 package tuktukjava;
 
 import java.io.*;
+import java.nio.channels.ScatteringByteChannel;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.*;
+import java.time.*;
 
 public class DataCleaner {
     List<String> lineList = new ArrayList<>();
     List<String[]> formattedList = new ArrayList<>();
 
-    public DataCleaner(File myfile){
+    public DataCleaner(File myfile,int fieldcount){
 
         try{
             FileReader fileReader = new FileReader(myfile);
@@ -23,25 +27,31 @@ public class DataCleaner {
         }catch (IOException e){
             System.out.println("File is not found..");
         }
-        for (int i = 0; i< lineList.size();i++){
-            String[] newLine = lineList.get(i).trim().split("[;,|]",-1);
+
+        for (String line:lineList){
+            String[] newLine = line.split("[;,|]", -1);
+            if (newLine.length != fieldcount) {
+                newLine = line.split(";", -1);
+            }
 
             for (int j = 0 ; j < newLine.length;j++){
-                if(newLine[j].equals(" ")){
-                    newLine[j] = "NoData";
-                }else {
-                    newLine[j].trim();
+                newLine[j] = newLine[j].trim();
+                if(newLine[j].isEmpty()){
+                    newLine[j] = null;
                 }
             }
-            if(newLine.length == 8){
+
+            if(fieldcount == 8 ){
                 try {
                     String sprice = priceFormat(newLine[3]);
                     double price = Double.parseDouble(sprice);
                     newLine[3] = String.format("Rs %.2f",price);
 
                 }catch (NumberFormatException | IllegalFormatConversionException e ) {
-                    System.out.println("no price value..");
+                    System.out.println("couldn't format price value..");
                 }
+                newLine[6] = String.valueOf(dateFormat(newLine[6]));
+
             }
             formattedList.add(newLine);
         }
@@ -62,6 +72,21 @@ public class DataCleaner {
             }
         }
         return finalPrice;
+    }
+    public LocalDate dateFormat(String date){
+        String[] patterns = {"yyyy-MM-dd","dd/MM/yyyy","yyyy/MM/dd","dd-MM-yyyy","d-MMM-yyyy","MMM d, yyyy"};
+        LocalDate newDate = null;
+
+        for (String pattern : patterns) {
+            try{
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern, Locale.ENGLISH);
+                newDate = LocalDate.parse(date,formatter);
+                return newDate;
+            }
+            catch (DateTimeParseException e){
+            }
+        }
+        return null;
     }
 
     public List<Item> returnItems(){
