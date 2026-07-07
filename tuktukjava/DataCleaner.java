@@ -73,7 +73,7 @@ public class DataCleaner {
         }
         return finalPrice;
     }
-    public LocalDate dateFormat(String date){
+    public static LocalDate dateFormat(String date){
         String[] patterns = {"yyyy-MM-dd","dd/MM/yyyy","yyyy/MM/dd","dd-MM-yyyy","d-MMM-yyyy","MMM d, yyyy"};
         LocalDate newDate = null;
 

@@ -11,6 +11,7 @@ public class Main {
 
         Inventory inventory = new Inventory(itemfile);
         RandomDealers randomDealers = new RandomDealers(dealerfile);
+        inventory.add();
         inventory.getInventory();
         //randomDealers.getAllDealers();
         //System.out.println("___________________");
