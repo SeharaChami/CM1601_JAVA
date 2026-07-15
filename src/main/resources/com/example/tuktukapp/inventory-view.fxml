@@ -43,8 +43,8 @@
          <effect>
             <ColorAdjust />
          </effect></Label>
-      <TextField fx:id="imgField" layoutX="107.0" layoutY="408.0" />
-      <DatePicker fx:id="datePicker" layoutX="107.0" layoutY="321.0" />
+      <TextField fx:id="imgField" layoutX="107.0" layoutY="408.0" onAction="#onImgRefField" />
+      <DatePicker fx:id="datePicker" layoutX="107.0" layoutY="321.0" onAction="#onDatePicker" />
       <Label fx:id="nameLabel" layoutX="107.0" layoutY="70.0" prefHeight="18.0" prefWidth="233.0" textFill="#8b8b8b" />
       <Label fx:id="brandLabel" layoutX="107.0" layoutY="127.0" prefHeight="18.0" prefWidth="233.0" textFill="#8b8b8b" />
       <Label fx:id="priceLabel" layoutX="107.0" layoutY="184.0" prefHeight="18.0" prefWidth="227.0" textFill="#8b8b8b" />
@@ -52,5 +52,5 @@
       <Label fx:id="fieldLabel" layoutX="107.0" layoutY="293.0" prefHeight="18.0" prefWidth="227.0" textFill="#8b8b8b" />
       <Label fx:id="imgLabel" layoutX="107.0" layoutY="433.0" prefHeight="18.0" prefWidth="227.0" textFill="#8b8b8b" />
       <Label fx:id="dateLabel" layoutX="107.0" layoutY="346.0" prefHeight="18.0" prefWidth="227.0" textFill="#8b8b8b" />
-   </children>
+       </children>
 </AnchorPane>
