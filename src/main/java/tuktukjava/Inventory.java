@@ -115,6 +115,4 @@ public class Inventory {
         }else itemCode = "P00"+last;
         return itemCode;
     }
-
-
 }

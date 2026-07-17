@@ -7,7 +7,7 @@
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="467.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tuktukjava.controllers.InventoryController">
+<AnchorPane prefHeight="500.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tuktukjava.controllers.InventoryController">
    <children>
       <Button fx:id="addItem" layoutX="472.0" layoutY="392.0" mnemonicParsing="false" onAction="#onAddButtonClick" prefHeight="39.0" prefWidth="97.0" text="add item" />
       <Label alignment="TOP_LEFT" layoutX="18.0" layoutY="49.0" prefHeight="18.0" prefWidth="84.0" text="Name          : " textOverrun="WORD_ELLIPSIS">
@@ -50,7 +50,7 @@
       <Label fx:id="priceLabel" layoutX="107.0" layoutY="184.0" prefHeight="18.0" prefWidth="227.0" textFill="#8b8b8b" />
       <Label fx:id="qtyLabel" layoutX="107.0" layoutY="240.0" prefHeight="18.0" prefWidth="227.0" textFill="#8b8b8b" />
       <Label fx:id="fieldLabel" layoutX="107.0" layoutY="293.0" prefHeight="18.0" prefWidth="227.0" textFill="#8b8b8b" />
-      <Label fx:id="imgLabel" layoutX="107.0" layoutY="433.0" prefHeight="18.0" prefWidth="227.0" textFill="#8b8b8b" />
+      <Label fx:id="imgLabel" layoutX="107.0" layoutY="433.0" prefHeight="18.0" prefWidth="334.0" textFill="#8b8b8b" />
       <Label fx:id="dateLabel" layoutX="107.0" layoutY="346.0" prefHeight="18.0" prefWidth="227.0" textFill="#8b8b8b" />
        </children>
 </AnchorPane>
