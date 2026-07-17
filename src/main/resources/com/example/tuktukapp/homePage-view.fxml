@@ -1,16 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="tuktukjava.controllers.HomeController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+<VBox alignment="CENTER" prefHeight="263.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tuktukjava.controllers.HomeController">
+   <AnchorPane prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #ffffff;">
+      <children>
+         <Rectangle arcHeight="5.0" arcWidth="9.0" fill="#c7c2b766" height="320.0" layoutY="71.0" opacity="0.51" smooth="false" stroke="WHITE" strokeLineJoin="ROUND" width="718.0" />
+         <Label layoutX="14.0" layoutY="14.0" prefHeight="42.0" prefWidth="186.0" text="Malabe Tuk-Tuk  ">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+         <Label layoutX="14.0" layoutY="47.0" text="Three-Wheeler SparesDepot" />
+         <Button fx:id="AddBtn" alignment="CENTER" layoutX="23.0" layoutY="123.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onAddBtnClick" prefHeight="85.0" prefWidth="130.0" style="-fx-background-color: #ffffff;" text="Add Item" textOverrun="LEADING_WORD_ELLIPSIS" wrapText="true" AnchorPane.leftAnchor="30.0">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </Button>
+         <Button fx:id="DeleteBtn" layoutX="384.0" layoutY="123.0" mnemonicParsing="false" onAction="#onDeleteBtnClick" prefHeight="85.0" prefWidth="130.0" style="-fx-background-color: #ffffff;" text="Delete Item">
+            <effect>
+               <Blend />
+            </effect>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </Button>
+         <Button fx:id="UpdateBtn" layoutX="208.0" layoutY="123.0" mnemonicParsing="false" onAction="#onUpdateBtnClick" prefHeight="85.0" prefWidth="130.0" style="-fx-background-color: #ffffff;" text="Update Item">
+            <effect>
+               <Blend />
+            </effect>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </Button>
+         <Button fx:id="ViewInventoryBtn" layoutX="443.0" layoutY="123.0" mnemonicParsing="false" onAction="#onviewBtnClick" prefHeight="85.0" prefWidth="130.0" style="-fx-background-color: #ffffff;" text="View Inventory" AnchorPane.rightAnchor="30.0">
+            <effect>
+               <Blend />
+            </effect>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </Button>
+         <Label layoutX="30.0" layoutY="79.0" text="Inventory" />
+         <Label layoutX="30.0" layoutY="215.0" text="Dealers" />
+         <Label layoutX="50.0" layoutY="176.0" text="New spare part" textFill="#747373" />
+         <Label layoutX="223.0" layoutY="176.0" text="Edit existing part" />
+         <Label layoutX="406.0" layoutY="176.0" text="Remove a part" textFill="#747373" />
+         <Label layoutX="573.0" layoutY="176.0" text="View spare parts " />
+         <Button fx:id="DealerViewerBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="32.0" layoutY="253.0" mnemonicParsing="false" onAction="#onDealerBtnClick" prefHeight="85.0" prefWidth="130.0" style="-fx-background-color: #ffffff;" text="View Dealers " textOverrun="LEADING_WORD_ELLIPSIS" wrapText="true">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </Button>
+         <Label layoutX="45.0" layoutY="308.0" text="Random delaers " textFill="#747373" />
+      </children>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
+   </AnchorPane>
+
+    <Label fx:id="welcomeText" />
 </VBox>

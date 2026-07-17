@@ -12,7 +12,7 @@ public class malabeTukTukApplication extends Application{
     @Override
     public void start(Stage stage)throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(malabeTukTukApplication.class.getResource( "/com/example/tuktukapp/inventory-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(malabeTukTukApplication.class.getResource( "/com/example/tuktukapp/homePage-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
         stage.show();

@@ -1,56 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.ColorAdjust?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tuktukjava.controllers.InventoryController">
-   <children>
-      <Button fx:id="addItem" layoutX="472.0" layoutY="392.0" mnemonicParsing="false" onAction="#onAddButtonClick" prefHeight="39.0" prefWidth="97.0" text="add item" />
-      <Label alignment="TOP_LEFT" layoutX="18.0" layoutY="49.0" prefHeight="18.0" prefWidth="84.0" text="Name          : " textOverrun="WORD_ELLIPSIS">
-         <effect>
-            <ColorAdjust />
-         </effect></Label>
-      <TextField fx:id="nameField" layoutX="107.0" layoutY="45.0" onAction="#onNameText" />
-      <Label alignment="TOP_LEFT" layoutX="17.0" layoutY="106.0" prefHeight="18.0" prefWidth="84.0" text="Brand          :  " textOverrun="WORD_ELLIPSIS">
-         <effect>
-            <ColorAdjust />
-         </effect></Label>
-      <TextField fx:id="brandField" layoutX="107.0" layoutY="102.0" onAction="#onBrandText" />
-      <Label alignment="TOP_LEFT" layoutX="17.0" layoutY="163.0" prefHeight="18.0" prefWidth="72.0" text="Price           :" textOverrun="WORD_ELLIPSIS">
-         <effect>
-            <ColorAdjust />
-         </effect></Label>
-      <TextField fx:id="priceField" layoutX="107.0" layoutY="159.0" onAction="#onPriceText" />
-      <Label layoutX="18.0" layoutY="218.0" prefHeight="18.0" prefWidth="72.0" text="Quantity     :">
-         <effect>
-            <ColorAdjust />
-         </effect></Label>
-      <TextField fx:id="quantityField" layoutX="107.0" layoutY="215.0" onAction="#onQtyText" />
-      <Label layoutX="17.0" layoutY="272.0" prefHeight="18.0" prefWidth="72.0" text="Field           :">
-         <effect>
-            <ColorAdjust />
-         </effect></Label>
-      <TextField fx:id="fieldInput" layoutX="107.0" layoutY="268.0" onAction="#onFieldText" />
-      <Label layoutX="17.0" layoutY="325.0" prefHeight="18.0" prefWidth="72.0" text="Date           :">
-         <effect>
-            <ColorAdjust />
-         </effect></Label>
-      <Label layoutX="16.0" layoutY="386.0" text="Image refference :">
-         <effect>
-            <ColorAdjust />
-         </effect></Label>
-      <TextField fx:id="imgField" layoutX="107.0" layoutY="408.0" onAction="#onImgRefField" />
-      <DatePicker fx:id="datePicker" layoutX="107.0" layoutY="321.0" onAction="#onDatePicker" />
-      <Label fx:id="nameLabel" layoutX="107.0" layoutY="70.0" prefHeight="18.0" prefWidth="233.0" textFill="#8b8b8b" />
-      <Label fx:id="brandLabel" layoutX="107.0" layoutY="127.0" prefHeight="18.0" prefWidth="233.0" textFill="#8b8b8b" />
-      <Label fx:id="priceLabel" layoutX="107.0" layoutY="184.0" prefHeight="18.0" prefWidth="227.0" textFill="#8b8b8b" />
-      <Label fx:id="qtyLabel" layoutX="107.0" layoutY="240.0" prefHeight="18.0" prefWidth="227.0" textFill="#8b8b8b" />
-      <Label fx:id="fieldLabel" layoutX="107.0" layoutY="293.0" prefHeight="18.0" prefWidth="227.0" textFill="#8b8b8b" />
-      <Label fx:id="imgLabel" layoutX="107.0" layoutY="433.0" prefHeight="18.0" prefWidth="334.0" textFill="#8b8b8b" />
-      <Label fx:id="dateLabel" layoutX="107.0" layoutY="346.0" prefHeight="18.0" prefWidth="227.0" textFill="#8b8b8b" />
-       </children>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="tuktukjava.controllers.InventoryController"
+            prefHeight="400.0" prefWidth="600.0">
+
 </AnchorPane>
