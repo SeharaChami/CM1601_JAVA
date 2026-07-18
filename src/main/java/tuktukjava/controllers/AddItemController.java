@@ -10,11 +10,12 @@ import tuktukjava.Inventory;
 import tuktukjava.Item;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 public class AddItemController {
     public Button clearBtn;
-    File itemfile = new File("inventory_legacy.txt");
-    Inventory inventory = new Inventory(itemfile);
+    private Inventory inventory;
     Item item = new Item(new String[]{});
     @FXML
     public Button addItem;
@@ -41,6 +42,11 @@ public class AddItemController {
     String quantity;
     String date;
     String img;
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+        itemCodeField.setText(inventory.generateItemCode());
+    }
 
     public void onNameText(ActionEvent actionEvent) {
         if(nameField.getText().isEmpty()){
@@ -92,7 +98,7 @@ public class AddItemController {
         else imgLabel.setText(null);
     }
 
-    public void onAddButtonClick(ActionEvent actionEvent) {
+    public void onAddButtonClick(ActionEvent actionEvent) throws IOException {
         name = nameField.getText().trim();
         brand = brandField.getText().trim();
         price = priceField.getText().trim();
@@ -107,7 +113,6 @@ public class AddItemController {
         else{
             itemCodeField.setText(inventory.generateItemCode());
             inventory.add(name,brand,price,field,quantity,date,img);
-            inventory.getInventory();
         }
     }
 

@@ -8,11 +8,9 @@ import java.util.*;
 public class RandomDealers {
     List<Dealer> formattedList = new ArrayList<>();
     List<Dealer> randomDealersList = new ArrayList<>();
-    int fieldcount = 4;
 
-    public RandomDealers(File dealerfile){
-        DataCleaner dealerset = new DataCleaner(dealerfile,fieldcount);
-        this.formattedList = dealerset.returnDealers();
+    public RandomDealers(List<Dealer> dealers){
+        this.formattedList = dealers;
     }
 
     public void getAllDealers(){

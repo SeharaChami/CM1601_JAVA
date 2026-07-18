@@ -5,16 +5,10 @@ import java.util.*;
 
 public class Inventory {
 
-    Scanner input = new Scanner(System.in);
-
-    DataCleaner dataset;
     List<Item> formattedList = new ArrayList<>();
-    int fieldcount = 8 ;
-    public Inventory(File itemfile) {
+    public Inventory(List<Item> items) throws IOException {
 
-        dataset =  new DataCleaner(itemfile,fieldcount);
-        this.formattedList = dataset.returnItems();
-
+        this.formattedList = items;
     }
 
     public void getInventory(){
@@ -28,7 +22,7 @@ public class Inventory {
         }
         System.out.println("Number of items : "+itemcount);
     }
-    public void add(String name,String brand,String price,String field,String quantity,String date,String img){
+    public void add(String name,String brand,String price,String field,String quantity,String date,String img) throws IOException {
         Item item = new Item(null);
         String[] part = new String[8];
         part[0] = generateItemCode();
@@ -41,6 +35,7 @@ public class Inventory {
         part[7] = item.setImg(img);
         item = new Item(part);
         formattedList.add(item);
+        saveItem(item);
     }
 
     public void delete(String code){
@@ -52,12 +47,14 @@ public class Inventory {
         }
     }
     public void lowStockMon(){
+        List<Item> lowItems = null;
         int limit = 10;
         for(Item element : formattedList){
             int qty = Integer.parseInt(element.item[4].trim());
             if(qty < limit && qty > 0){
                 System.out.println(element.item[0]);
             }
+            lowItems.add(element);
         }
     }
 //    public void Update(){
@@ -114,5 +111,14 @@ public class Inventory {
             itemCode = "P0"+last;
         }else itemCode = "P00"+last;
         return itemCode;
+    }
+
+    public void saveItem(Item item) throws IOException {
+        FileWriter writer = new FileWriter(FileManager.cleanItemRoot,true);
+        for (String detail:item.item){
+            writer.write(detail+"|");
+        }
+        writer.write("\n");
+        writer.close();
     }
 }

@@ -1,11 +1,9 @@
 package tuktukjava;
 
 import java.util.*;
-import tuktukjava.DataCleaner;
 
 public class Item {
     String[] item;
-    Scanner input = new Scanner(System.in);
 
     public Item(String[] line){
         this.item = line;

@@ -10,15 +10,5 @@ public class Launcher {
 
         Application.launch(malabeTukTukApplication.class, args);
 
-
-//        File dealerfile = new File("dealers_legacy.txt");
-//
-
-//        RandomDealers randomDealers = new RandomDealers(dealerfile);
-//        inventory.add();
-//        inventory.getInventory();
-//        //randomDealers.getAllDealers();
-        //System.out.println("___________________");
-        //randomDealers.getRandomDealers();
     }
 }
