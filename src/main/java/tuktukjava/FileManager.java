@@ -13,24 +13,18 @@ public class FileManager {
         File cleanFile = new File(cleanItemRoot);
 
         if (cleanFile.exists() && cleanFile.length() > 0) {
-            // clean file exists — read it directly
-            System.out.println("Reading from clean file...");
             return readCleanItemFile(cleanFile);
         } else {
-            // first run — clean the legacy file
-            System.out.println("Clean file not found, reading legacy file...");
             File legacyFile = new File(legacyItemRoot);
 
             if (!legacyFile.exists()) {
-                System.out.println("Legacy file not found at: " + legacyFile.getAbsolutePath());
-                return new ArrayList<>(); // return empty list, don't crash
+                return new ArrayList<>();
             }
 
             DataCleaner cleaner = new DataCleaner(legacyFile, 8);
             List<Item> items = cleaner.returnItems();
-            System.out.println("Cleaned items count: " + items.size());
 
-            saveItems(items); // write to clean file
+            saveItems(items);
             return items;
         }
     }
@@ -77,7 +71,7 @@ public class FileManager {
     public static void saveItems(List<Item> items) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(cleanItemRoot));
         for (Item item : items) {
-            writer.write(String.join("|", item.item)); // join with | no backslash
+            writer.write(String.join("|", item.item));
             writer.newLine();
         }
         writer.close();
@@ -85,7 +79,7 @@ public class FileManager {
     public static void saveDealers(List<Dealer> dealers) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(cleanDealerRoot));
         for (Dealer dealer : dealers) {
-            writer.write(String.join("|", dealer.dealer)); // join with | no backslash
+            writer.write(String.join("|", dealer.dealer));
             writer.newLine();
         }
         writer.close();

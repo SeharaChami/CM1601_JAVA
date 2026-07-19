@@ -4,17 +4,67 @@ import java.util.*;
 
 public class Item {
     String[] item;
+    private String code;
+    private String name;
+    private String brand;
+    private String pirce;
+    private String qty;
+    private String field;
+    private String date;
+    private String img;
 
     public Item(String[] line){
         this.item = line;
     }
-    public String setName(String partName){
+
+
+    public void setItem(String[] item) {
+        this.item = item;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public void setPrice(String price) {
+        this.pirce = pirce;
+    }
+
+    public void setQty(String qty) {
+        this.qty = qty;
+    }
+
+    public void setField(String field) {
+        this.field = field;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getName(String partName){
         return partName;
     }
-    public String setBrand(String partBrand){
+    public String getBrand(String partBrand){
         return partBrand;
     }
-    public String setPrice(String partPrice){
+    public String getPrice(String partPrice){
         double price = 0.0;
             try{
                 price = Double.parseDouble(partPrice);
@@ -28,7 +78,7 @@ public class Item {
             }
         return partPrice;
     }
-    public String setQty(String qty){
+    public String getQty(String qty){
         int partqty;
         try{
             partqty = Integer.parseInt(qty);
@@ -41,13 +91,13 @@ public class Item {
             return null;
         }
     }
-    public String setField(String partField) {
+    public String getField(String partField) {
         return partField;
     }
-    public String setDate(String date){
+    public String getDate(String date){
         return date;
     }
-    public String setImg(String img){
+    public String getImg(String img){
         boolean flag = true;
             if(imageValidate(img)==false){
                 return null;

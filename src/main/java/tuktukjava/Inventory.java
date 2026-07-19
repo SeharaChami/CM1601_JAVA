@@ -22,20 +22,13 @@ public class Inventory {
         }
         System.out.println("Number of items : "+itemcount);
     }
-    public void add(String name,String brand,String price,String field,String quantity,String date,String img) throws IOException {
-        Item item = new Item(null);
-        String[] part = new String[8];
-        part[0] = generateItemCode();
-        part[1] = item.setName(name);
-        part[2] = item.setBrand(brand);
-        part[3] = item.setPrice(price);
-        part[4] = item.setQty(quantity);
-        part[5] = item.setField(field);
-        part[6] = item.setDate(date);
-        part[7] = item.setImg(img);
-        item = new Item(part);
+    public void add(Item newItem) throws IOException {
+        Item item = newItem;
         formattedList.add(item);
         saveItem(item);
+        System.out.println(item.getCode());
+        String msg = item.getCode()+" added to the inventory";
+        saveToAuditLog(item,msg);
     }
 
     public void delete(String code){
@@ -97,20 +90,24 @@ public class Inventory {
 //            }
 //        }
 //    }
-    public String generateItemCode(){
+    public String generateItemCode() {
         String itemCode = "";
-        int last = formattedList.size()-1;
-        String lastCode = formattedList.get(last).item[0];
-        String temp = "";
-        boolean flag = false;
-        for (int i = 1; i < lastCode.length();i++){
-            temp = temp + lastCode.charAt(i);
+        if (formattedList.isEmpty()) {
+            return "P001";
+        } else {
+            int last = formattedList.size() - 1;
+            String lastCode = formattedList.get(last).item[0];
+            String temp = "";
+            boolean flag = false;
+            for (int i = 1; i < lastCode.length(); i++) {
+                temp = temp + lastCode.charAt(i);
+            }
+            last = (Integer.parseInt(temp) + 1);
+            if (last > 9) {
+                itemCode = "P0" + last;
+            } else itemCode = "P00" + last;
+            return itemCode;
         }
-        last = (Integer.parseInt(temp)+1);
-        if(last > 9){
-            itemCode = "P0"+last;
-        }else itemCode = "P00"+last;
-        return itemCode;
     }
 
     public void saveItem(Item item) throws IOException {
@@ -119,6 +116,15 @@ public class Inventory {
             writer.write(detail+"|");
         }
         writer.write("\n");
+        writer.close();
+    }
+    public static void saveToAuditLog(Item item,String msg) throws IOException {
+        String root = "audit_log.txt";
+        BufferedWriter writer = new BufferedWriter(new FileWriter(root));
+        for(String detail : item.item){
+            writer.write(detail);
+        }
+        writer.write(msg);
         writer.close();
     }
 }

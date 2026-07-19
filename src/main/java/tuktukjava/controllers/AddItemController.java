@@ -45,57 +45,80 @@ public class AddItemController {
 
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
-        itemCodeField.setText(inventory.generateItemCode());
+        String tempCode = inventory.generateItemCode();
+        itemCodeField.setText(tempCode);
+        item.setCode(tempCode);
     }
 
     public void onNameText(ActionEvent actionEvent) {
         if(nameField.getText().isEmpty()){
             nameLabel.setText("Name cannot be empty..");
         }
-        else nameLabel.setText(null);
+        else
+        {nameLabel.setText(null);
+        item.setName(nameField.getText());
+        }
     }
 
     public void onBrandText(ActionEvent actionEvent) {
         if (brandField.getText().isEmpty()){
             brandLabel.setText("Brand cannot be empty..");
         }
-        else brandLabel.setText(null);
+        else {
+            brandLabel.setText(null);
+            item.setBrand(brandField.getText());
+        }
     }
 
     public void onPriceText(ActionEvent actionEvent) {
-        price = item.setPrice(priceField.getText());
+        price = item.getPrice(priceField.getText());
         if(price == null){
             priceLabel.setText("Provide only numeric value greater that 0..");
         }
-        else priceLabel.setText(null);
+        else {
+            priceLabel.setText(null);
+            item.setPrice(price);
+        }
     }
 
     public void onQtyText(ActionEvent actionEvent) {
-        quantity = item.setQty(quantityField.getText());
+        quantity = item.getQty(quantityField.getText());
         if(quantity == null){
             qtyLabel.setText("Provide only numeric value greater that 0..");
         }
-        else qtyLabel.setText(null);
+        else {
+            qtyLabel.setText(null);
+            item.setQty(quantity);
+        }
     }
 
     public void onFieldText(ActionEvent actionEvent) {
         if (fieldInput.getText().isEmpty()) {
             fieldLabel.setText("Field cannot be empty..");
-        } else fieldLabel.setText(null);
+        } else {
+            fieldLabel.setText(null);
+            item.setField(fieldInput.getText());
+        }
     }
 
     public void onDatePicker(ActionEvent actionEvent) {
         if (datePicker.getValue()==null) {
             dateLabel.setText("Provide a valid date..");
-        } else dateLabel.setText(null);
+        } else {
+            dateLabel.setText(null);
+            item.setDate(datePicker.getValue().toString());
+        }
     }
 
     public void onImgRefField(ActionEvent actionEvent) {
-        img = item.setImg(imgField.getText());
+        img = item.getImg(imgField.getText());
         if (img == null){
             imgLabel.setText("Provide in only \"png\",\"jpg\",\"jpeg\"file format..");
         }
-        else imgLabel.setText(null);
+        else {
+            imgLabel.setText(null);
+            item.setImg(img);
+        }
     }
 
     public void onAddButtonClick(ActionEvent actionEvent) throws IOException {
@@ -111,8 +134,7 @@ public class AddItemController {
             imgLabel.setText("Please fill all fields..");
         }
         else{
-            itemCodeField.setText(inventory.generateItemCode());
-            inventory.add(name,brand,price,field,quantity,date,img);
+            inventory.add(item);
         }
     }
 

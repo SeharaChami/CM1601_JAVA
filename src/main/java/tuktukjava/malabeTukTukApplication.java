@@ -7,11 +7,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import tuktukjava.controllers.HomeController;
-import tuktukjava.controllers.InventoryController;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Random;
 
 public class malabeTukTukApplication extends Application{
 
