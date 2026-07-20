@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class HomeController {
+    public Button cartDisBtn;
+    public Button SearchBtn;
     private Inventory inventory;
     private RandomDealers randomDealers;
 
@@ -81,5 +83,11 @@ public class HomeController {
         DealerController controller = loader.getController();
         controller.setRandomDealers(this.randomDealers);
         stage.setScene(new Scene(root, 700, 400));
+    }
+
+    public void onCartBtnClick(ActionEvent actionEvent) {
+    }
+
+    public void onSearchBtnClick(ActionEvent actionEvent) {
     }
 }

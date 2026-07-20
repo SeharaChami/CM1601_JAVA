@@ -29,7 +29,7 @@ public class malabeTukTukApplication extends Application{
         controller.setInventory(inventory);
         controller.setDealers(randomDealers);
 
-        stage.setScene(new Scene(root, 700, 400));
+        stage.setScene(new Scene(root, 730, 500));
         stage.show();
     }
 }

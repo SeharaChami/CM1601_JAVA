@@ -15,6 +15,7 @@ import java.util.List;
 
 public class AddItemController {
     public Button clearBtn;
+    public Label msgLabel;
     private Inventory inventory;
     Item item = new Item(new String[]{});
     @FXML
