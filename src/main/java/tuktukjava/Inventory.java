@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Inventory {
 
-    List<Item> formattedList = new ArrayList<>();
+    private List<Item> formattedList = new ArrayList<>();
     public Inventory(List<Item> items) throws IOException {
 
         this.formattedList = items;
@@ -30,13 +30,26 @@ public class Inventory {
         saveToAuditLog(item,msg);
     }
 
-    public void delete(String code){
-        for (Item element : formattedList){
-            if (element.item[0].equals(code)){
-                formattedList.remove(element);
-                break;
+    public void delete(Item item) throws IOException {
+        for (Item example : formattedList){
+            if(example.equals(item)){
+                formattedList.remove(example);
             }
         }
+        FileManager.saveItems(formattedList);
+        saveToAuditLog(item,item.getCode()+" deleted");
+    }
+    public void update(Item item) throws IOException {
+        FileManager.saveItems(formattedList);
+        saveToAuditLog(item,item.getCode()+" updated");
+    }
+    public Item searchByCode(String code){
+        for (Item item:formattedList){
+            if(item.item[0] != null && item.item[0].trim().equalsIgnoreCase(code)){
+                return item;
+            }
+        }
+        return null;
     }
     public void lowStockMon(){
         List<Item> lowItems = null;
@@ -48,18 +61,6 @@ public class Inventory {
             }
             lowItems.add(element);
         }
-    }
-    public Item searchByCode(String code){
-        for (Item item:formattedList){
-            if(item.item[0] != null && item.item[0].trim().equalsIgnoreCase(code)){
-                return item;
-            }
-        }
-        return null;
-    }
-    public void update(Item item) throws IOException {
-        FileManager.saveItems(formattedList);
-        saveToAuditLog(item,item.getCode()+" updated");
     }
     public String generateItemCode() {
         String itemCode = "";

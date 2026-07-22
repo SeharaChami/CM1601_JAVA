@@ -1,14 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="tuktukjava.controllers.DeleteController"
-            prefHeight="400.0" prefWidth="600.0">
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="tuktukjava.controllers.DeleteController"
+      prefWidth="730" prefHeight="500"
+      style="-fx-background-color: white;">
 
-</AnchorPane>
+    <HBox style="-fx-background-color: #f5f5f5;" alignment="CENTER_LEFT" spacing="12">
+        <padding><Insets top="14" right="24" bottom="14" left="24"/></padding>
+        <Button text="← Delete item" onAction="#onBackBtnClick"
+                style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-font-size: 15; -fx-font-weight: bold;"/>
+    </HBox>
+
+    <VBox spacing="20" VBox.vgrow="ALWAYS">
+        <padding><Insets top="24" right="24" left="24"/></padding>
+
+        <VBox spacing="8">
+            <Label text="Enter item code"
+                   style="-fx-font-size: 12; -fx-text-fill: #555;"/>
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <TextField fx:id="searchCodeField" promptText="e.g. P001"
+                           prefWidth="300" prefHeight="40"
+                           style="-fx-border-radius: 8; -fx-background-radius: 8;"/>
+                <Button text="Find" onAction="#onFindBtnClick"
+                        prefWidth="120" prefHeight="40"
+                        style="-fx-border-color: #cccccc; -fx-border-radius: 8; -fx-background-radius: 8; -fx-background-color: white; -fx-font-size: 13;"/>
+            </HBox>
+            <Label fx:id="errorLabel" style="-fx-text-fill: red; -fx-font-size: 11;"/>
+        </VBox>
+
+        <Separator/>
+
+        <VBox fx:id="previewBox" spacing="6"
+              style="-fx-border-color: #cccccc; -fx-border-radius: 8; -fx-background-color: #fafafa; -fx-padding: 14;"
+              visible="false" managed="false">
+            <Label fx:id="previewTitleLabel"
+                   style="-fx-font-size: 14; -fx-font-weight: bold;"/>
+            <Label fx:id="previewDetailLabel1"
+                   style="-fx-font-size: 12; -fx-text-fill: #444;"/>
+            <Label fx:id="previewDetailLabel2"
+                   style="-fx-font-size: 12; -fx-text-fill: #444;"/>
+        </VBox>
+
+        <VBox fx:id="confirmBox" spacing="6"
+              style="-fx-background-color: #ffe8e8; -fx-border-color: #ffbbbb; -fx-border-radius: 8; -fx-padding: 14;"
+              visible="false" managed="false">
+            <Label fx:id="confirmTitleLabel"
+                   style="-fx-font-size: 13; -fx-font-weight: bold; -fx-text-fill: #990000;"/>
+            <Label text="This cannot be undone. The record will be removed from the file."
+                   style="-fx-font-size: 12; -fx-text-fill: #990000;"/>
+        </VBox>
+
+        <Label fx:id="msgLabel" style="-fx-text-fill: green; -fx-font-size: 12;"/>
+
+    </VBox>
+
+    <HBox spacing="12" alignment="CENTER_RIGHT">
+        <padding><Insets top="16" right="24" bottom="20" left="24"/></padding>
+        <Button text="Cancel" onAction="#onBackBtnClick" prefWidth="130" prefHeight="40"
+                style="-fx-border-color: #cccccc; -fx-border-radius: 8; -fx-background-radius: 8; -fx-background-color: white;"/>
+        <Button fx:id="deleteBtn" text="Delete item" onAction="#onDeleteBtnClick"
+                prefWidth="150" prefHeight="40" visible="false" managed="false"
+                style="-fx-background-color: #ffcccc; -fx-text-fill: #990000; -fx-border-color: #ffbbbb; -fx-border-radius: 8; -fx-background-radius: 8;"/>
+    </HBox>
+</VBox>
