@@ -14,7 +14,7 @@
    <AnchorPane prefHeight="370.0" prefWidth="730.0" style="-fx-background-color: #ffffff;">
       <children>
          <Rectangle arcHeight="5.0" arcWidth="9.0" fill="#c7c2b766" height="401.0" layoutY="81.0" opacity="0.51" smooth="false" stroke="WHITE" strokeLineJoin="ROUND" width="728.0" />
-         <Button fx:id="AddBtn" alignment="CENTER" layoutX="30.0" layoutY="115.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onAddBtnClick" prefHeight="85.0" prefWidth="130.0" style="-fx-background-color: #ffffff;" text="Add Item              New spare part" textOverrun="LEADING_WORD_ELLIPSIS" wrapText="true" AnchorPane.leftAnchor="30.0">
+         <Button fx:id="AddBtn" alignment="CENTER" layoutX="30.0" layoutY="115.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onAddBtnClick" prefHeight="85.0" prefWidth="130.0" style="-fx-background-color: #ffffff;" text="Add Item              New spare part" wrapText="true" AnchorPane.leftAnchor="30.0">
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor>

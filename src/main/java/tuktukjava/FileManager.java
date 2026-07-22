@@ -62,7 +62,7 @@ public class FileManager {
         String line;
         while((line = reader.readLine())!=null ){
             String[] parts = line.split("\\|",-1);
-            if(parts.length == 8){
+            if(parts.length == 4){
                 dealers.add(new Dealer(parts));
             }
         }

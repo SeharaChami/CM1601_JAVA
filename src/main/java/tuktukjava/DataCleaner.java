@@ -19,7 +19,7 @@ public class DataCleaner {
             String line;
 
             while ((line = reader.readLine()) != null) {
-                lineList.add(line.trim());
+                lineList.add(line.trim().toLowerCase());
 
             }
             reader.close();

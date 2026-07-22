@@ -26,7 +26,6 @@ public class Inventory {
         Item item = newItem;
         formattedList.add(item);
         saveItem(item);
-        System.out.println(item.getCode());
         String msg = item.getCode()+" added to the inventory";
         saveToAuditLog(item,msg);
     }
@@ -50,46 +49,18 @@ public class Inventory {
             lowItems.add(element);
         }
     }
-//    public void Update(){
-//        System.out.println("Enter item code of the relevant item..");
-//        String code = input.nextLine();
-//        for(Item element : formattedList){
-//            if (code.equals(element.item[0])){
-//                System.out.println("enter field..");
-//                String part = input.nextLine().toLowerCase();
-//                switch (part) {
-//                    case "name":
-//                        System.out.println("name : ");
-//                        String name = element.setName();
-//                        element.item[1] = name;
-//                    case "brand":
-//                        System.out.println("brand : ");
-//                        String brand = element.setBrand();
-//                        element.item[2] = brand;
-//                    case "price":
-//                        System.out.println("brand : ");
-//                        String price = element.setPrice();
-//                        element.item[3] = price;
-//                    case "quantity":
-//                        System.out.println("quantity : ");
-//                        String qty = element.setQty();
-//                        element.item[4] = qty;
-//                    case "field":
-//                        System.out.println("field : ");
-//                        String field = element.setField();
-//                        element.item[5] = field;
-//                    case "date":
-//                        System.out.println("brand : ");
-//                        String date = element.setDate();
-//                        element.item[6] = date;
-//                    case "img":
-//                        System.out.println("brand : ");
-//                        String img = element.setImg();
-//                        element.item[7] = img;
-//                }
-//            }
-//        }
-//    }
+    public Item searchByCode(String code){
+        for (Item item:formattedList){
+            if(item.item[0] != null && item.item[0].trim().equalsIgnoreCase(code)){
+                return item;
+            }
+        }
+        return null;
+    }
+    public void update(Item item) throws IOException {
+        FileManager.saveItems(formattedList);
+        saveToAuditLog(item,item.getCode()+" updated");
+    }
     public String generateItemCode() {
         String itemCode = "";
         if (formattedList.isEmpty()) {
@@ -120,7 +91,7 @@ public class Inventory {
     }
     public static void saveToAuditLog(Item item,String msg) throws IOException {
         String root = "audit_log.txt";
-        BufferedWriter writer = new BufferedWriter(new FileWriter(root));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(root,true));
         for(String detail : item.item){
             writer.write(detail);
         }

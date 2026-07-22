@@ -42,7 +42,7 @@ public class HomeController {
         Parent root = loader.load();
         AddItemController controller = loader.getController();
         controller.setInventory(this.inventory);
-        stage.setScene(new Scene(root, 700, 400));
+        stage.setScene(new Scene(root, 730, 500));
     }
 
     @FXML
@@ -60,7 +60,9 @@ public class HomeController {
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(
                 getClass().getResource("/com/example/tuktukapp/update-view.fxml")));
         Parent root = loader.load();
-        stage.setScene(new Scene(root, 700, 400));
+        UpdateController controller = loader.getController();
+        controller.setInventory(this.inventory);
+        stage.setScene(new Scene(root, 730, 500));
     }
 
     @FXML
@@ -71,7 +73,7 @@ public class HomeController {
         Parent root = loader.load();
         InventoryController controller = loader.getController();
         controller.setInventory(this.inventory);
-        stage.setScene(new Scene(root, 700, 400));
+        stage.setScene(new Scene(root, 730, 500));
     }
 
     @FXML
@@ -82,7 +84,7 @@ public class HomeController {
         Parent root = loader.load();
         DealerController controller = loader.getController();
         controller.setRandomDealers(this.randomDealers);
-        stage.setScene(new Scene(root, 700, 400));
+        stage.setScene(new Scene(root, 730, 500));
     }
 
     public void onCartBtnClick(ActionEvent actionEvent) {
