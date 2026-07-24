@@ -1,14 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="tuktukjava.controllers.InventoryController"
-            prefHeight="400.0" prefWidth="600.0">
+<?import javafx.geometry.Insets?>
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="tuktukjava.controllers.InventoryController"
+      prefWidth="730" prefHeight="600"
+      style="-fx-background-color: white;">
 
-</AnchorPane>
+    <HBox alignment="CENTER_LEFT" spacing="12"
+          style="-fx-background-color: #f5f5f5;">
+        <padding><Insets top="14" right="24" bottom="14" left="24"/></padding>
+        <Button text="← View inventory" onAction="#onBackBtnClick"
+                style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-font-size: 15; -fx-font-weight: bold;"/>
+        <HBox HBox.hgrow="ALWAYS"/>
+        <TextField fx:id="searchField" promptText="Search parts..."
+                   prefWidth="220" prefHeight="36" onAction="#onSearchAction"
+                   style="-fx-border-radius: 20; -fx-background-radius: 20;"/>
+    </HBox>
+
+    <HBox style="-fx-background-color: #f0f0f0; -fx-padding: 8 24 8 24;">
+        <Label text="Code"  prefWidth="80"  style="-fx-font-size: 12; -fx-text-fill: #888;"/>
+        <Label text="Name"  prefWidth="240" style="-fx-font-size: 12; -fx-text-fill: #888;"/>
+        <Label text="Brand" prefWidth="100" style="-fx-font-size: 12; -fx-text-fill: #888;"/>
+        <Label text="Price" prefWidth="110" style="-fx-font-size: 12; -fx-text-fill: #888;"/>
+        <Label text="Qty"   prefWidth="60"  style="-fx-font-size: 12; -fx-text-fill: #888;"/>
+        <Label text="Date"  prefWidth="120" style="-fx-font-size: 12; -fx-text-fill: #888;"/>
+    </HBox>
+
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                style="-fx-background: white; -fx-border-color: transparent;">
+        <VBox fx:id="tableContent">
+            <padding><Insets top="4" right="24" bottom="4" left="24"/></padding>
+        </VBox>
+    </ScrollPane>
+
+    <HBox spacing="12" style="-fx-background-color: #f5f5f5; -fx-padding: 12 24 12 24;">
+        <VBox prefWidth="220" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 12;">
+            <Label text="Total items" style="-fx-font-size: 12; -fx-text-fill: #666;"/>
+            <Label fx:id="totalItemsLabel" text="0" style="-fx-font-size: 22; -fx-font-weight: bold;"/>
+        </VBox>
+        <VBox prefWidth="220" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 12;">
+            <Label text="Total quantity" style="-fx-font-size: 12; -fx-text-fill: #666;"/>
+            <Label fx:id="totalQtyLabel" text="0 units" style="-fx-font-size: 22; -fx-font-weight: bold;"/>
+        </VBox>
+        <VBox HBox.hgrow="ALWAYS" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 12;">
+            <Label text="Total value" style="-fx-font-size: 12; -fx-text-fill: #666;"/>
+            <Label fx:id="totalValueLabel" text="Rs 0.00" style="-fx-font-size: 22; -fx-font-weight: bold;"/>
+        </VBox>
+    </HBox>
+
+    <HBox alignment="CENTER_LEFT" spacing="12"
+          style="-fx-padding: 10 24 14 24;">
+        <Label text="Ordered by part code within each category"
+               style="-fx-font-size: 11; -fx-text-fill: #888;" HBox.hgrow="ALWAYS"/>
+        <Button fx:id="prevBtn" text="← Prev" onAction="#onPrevClick"
+                style="-fx-border-color: #cccccc; -fx-border-radius: 6; -fx-background-radius: 6; -fx-background-color: white;"/>
+        <Button fx:id="nextBtn" text="Next →" onAction="#onNextClick"
+                style="-fx-border-color: #cccccc; -fx-border-radius: 6; -fx-background-radius: 6; -fx-background-color: white;"/>
+        <Label fx:id="pageLabel" text="1 / 1"
+               style="-fx-font-size: 12; -fx-text-fill: #888;"/>
+    </HBox>
+</VBox>

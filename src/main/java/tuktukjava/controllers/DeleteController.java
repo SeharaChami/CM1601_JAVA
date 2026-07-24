@@ -1,6 +1,7 @@
 package tuktukjava.controllers;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -19,16 +20,18 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class DeleteController {
-    public TextField searchCodeField;
-    public Label errorLabel;
-    public VBox previewBox;
-    public Label previewTitleLabel;
-    public Label previewDetailLabel1;
-    public Label previewDetailLabel2;
-    public VBox confirmBox;
-    public Label confirmTitleLabel;
-    public Label msgLabel;
-    public Button deleteBtn;
+
+    @FXML private TextField searchCodeField;
+    @FXML private VBox previewBox;
+    @FXML private VBox confirmBox;
+    @FXML private Label previewTitleLabel;
+    @FXML private Label previewDetailLabel1;
+    @FXML private Label previewDetailLabel2;
+    @FXML private Label confirmTitleLabel;
+    @FXML private Label errorLabel;
+    @FXML private Label msgLabel;
+    @FXML
+    private Button deleteBtn;
     private Inventory inventory;
     private Item current ;
 
@@ -36,6 +39,7 @@ public class DeleteController {
         this.inventory = inventory;
     }
 
+    @FXML
     public void onFindBtnClick(ActionEvent actionEvent) throws IOException {
         String code = searchCodeField.getText().trim().toUpperCase();
         current = inventory.searchByCode(code);
@@ -50,6 +54,8 @@ public class DeleteController {
         previewDetailLabel1.setText("Brand: " + current.item[2] + " | Price: " + current.item[3] + " | Qty: " + current.item[4] + " | Category: " + current.item[5]);
         previewDetailLabel2.setText("Date: " + current.item[6] + " | Image: " + current.item[7]);
         confirmTitleLabel.setText("Delete " + current.item[0] + "?");
+
+        showPreview();
 
     }
     private void showPreview() {
@@ -69,7 +75,7 @@ public class DeleteController {
         deleteBtn.setVisible(false);
         deleteBtn.setManaged(false);
     }
-
+@FXML
     public void onBackBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(
@@ -80,7 +86,7 @@ public class DeleteController {
         stage.setScene(new Scene(root, 730, 500));
         stage.show();
     }
-
+@FXML
     public void onDeleteBtnClick(ActionEvent actionEvent) throws IOException {
         if (current == null){return;}
         inventory.delete(current);

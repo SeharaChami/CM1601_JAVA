@@ -51,7 +51,9 @@ public class HomeController {
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(
                 getClass().getResource("/com/example/tuktukapp/deleteItem-view.fxml")));
         Parent root = loader.load();
-        stage.setScene(new Scene(root, 700, 400));
+        DeleteController controller = loader.getController();
+        controller.setInventory(this.inventory);
+        stage.setScene(new Scene(root, 730, 500));
     }
 
     @FXML

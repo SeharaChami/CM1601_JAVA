@@ -19,7 +19,7 @@ public class DataCleaner {
             String line;
 
             while ((line = reader.readLine()) != null) {
-                lineList.add(line.trim().toLowerCase());
+                lineList.add(line.trim());
 
             }
             reader.close();
@@ -37,7 +37,7 @@ public class DataCleaner {
             for (int j = 0 ; j < newLine.length;j++){
                 newLine[j] = newLine[j].trim();
                 if(newLine[j].isEmpty()){
-                    newLine[j] = null;
+                    newLine[j] = "N/A";
                 }
             }
 
@@ -51,6 +51,7 @@ public class DataCleaner {
                     System.out.println("couldn't format price value..");
                 }
                 newLine[6] = String.valueOf(dateFormat(newLine[6]));
+                newLine[5] = newLine[5].toUpperCase();
 
             }
             formattedList.add(newLine);

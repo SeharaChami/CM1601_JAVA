@@ -31,13 +31,18 @@ public class Inventory {
     }
 
     public void delete(Item item) throws IOException {
-        for (Item example : formattedList){
-            if(example.equals(item)){
-                formattedList.remove(example);
+        Item toRemove = null;
+
+        for (Item example : formattedList) {
+            if (example.item[0].equalsIgnoreCase(item.item[0])) {
+                toRemove = example;
             }
         }
-        FileManager.saveItems(formattedList);
-        saveToAuditLog(item,item.getCode()+" deleted");
+        if (toRemove != null) {
+            formattedList.remove(toRemove);
+            FileManager.saveItems(formattedList);
+            saveToAuditLog(item, item.item[0] + " deleted");
+        }
     }
     public void update(Item item) throws IOException {
         FileManager.saveItems(formattedList);
@@ -98,5 +103,50 @@ public class Inventory {
         }
         writer.write(msg);
         writer.close();
+    }
+    public List<List<Item>> getItemsByCategory() {
+        List<String> categories = new ArrayList<>();
+        List<List<Item>> result = new ArrayList<>();
+
+        for (Item item : formattedList) {
+            String category = item.item[5].trim().toUpperCase();
+            if (!categories.contains(category)) {
+                categories.add(category);
+            }
+        }
+
+        for (String category : categories) {
+            List<Item> categoryList = new ArrayList<>();
+
+            for (Item item : formattedList) {
+                if (item.item[5].trim().toUpperCase().equals(category)) {
+                    categoryList.add(item);
+                }
+            }
+
+            for (int i = 0; i < categoryList.size() - 1; i++) {
+                for (int j = 0; j < categoryList.size() - 1 - i; j++) {
+                    int code1 = Integer.parseInt(categoryList.get(j).item[0].substring(1));
+                    int code2 = Integer.parseInt(categoryList.get(j+1).item[0].substring(1));
+                    if (code1 > code2) {
+                        Item temp = categoryList.get(j);
+                        categoryList.set(j, categoryList.get(j + 1));
+                        categoryList.set(j + 1, temp);
+                    }
+                }
+            }
+            result.add(categoryList);
+        }
+        return result;
+    }
+    public List<String> getCategories() {
+        List<String> categories = new ArrayList<>();
+        for (Item item : formattedList) {
+            String category = item.item[5].trim().toUpperCase();
+            if (!categories.contains(category)) {
+                categories.add(category);
+            }
+        }
+        return categories;
     }
 }
