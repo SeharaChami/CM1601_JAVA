@@ -21,7 +21,7 @@ public class FileManager {
                 return new ArrayList<>();
             }
 
-            DataCleaner cleaner = new DataCleaner(legacyFile, 8);
+            InventoryCleaner cleaner = new InventoryCleaner(legacyFile, 8);
             List<Item> items = cleaner.returnItems();
 
             saveItems(items);
@@ -34,8 +34,8 @@ public class FileManager {
         if (cleanFile.exists()){
             return readCleanDealerFile(cleanFile);
         }else{
-            DataCleaner dataCleaner = new DataCleaner(new File(legacyDealerRoot),4);
-            List<Dealer> dealers = dataCleaner.returnDealers();
+            DealerCleaner cleaner = new DealerCleaner(new File(legacyDealerRoot),4);
+            List<Dealer> dealers = cleaner.returnDealers();
             saveDealers(dealers);
             return dealers;
         }
@@ -45,12 +45,10 @@ public class FileManager {
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String line;
         while ((line = reader.readLine()) != null) {
-            if (line.trim().isEmpty()) continue; // skip blank lines
+            if (line.trim().isEmpty()) continue;
             String[] parts = line.split("\\|", -1);
             if (parts.length == 8) {
                 items.add(new Item(parts));
-            } else {
-                System.out.println("Skipping line with " + parts.length + " fields: " + line);
             }
         }
         reader.close();

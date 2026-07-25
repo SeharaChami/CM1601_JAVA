@@ -1,6 +1,8 @@
 package tuktukjava;
 
 import java.io.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 public class Inventory {
@@ -89,19 +91,18 @@ public class Inventory {
 
     public void saveItem(Item item) throws IOException {
         FileWriter writer = new FileWriter(FileManager.cleanItemRoot,true);
-        for (String detail:item.item){
-            writer.write(detail+"|");
-        }
-        writer.write("\n");
+        writer.write(String.join("|",item.item)+"\n");
         writer.close();
     }
     public static void saveToAuditLog(Item item,String msg) throws IOException {
+        LocalTime currentTime = LocalTime.now();
+        LocalDate date = LocalDate.now();
         String root = "audit_log.txt";
         BufferedWriter writer = new BufferedWriter(new FileWriter(root,true));
         for(String detail : item.item){
-            writer.write(detail);
+            writer.write(detail+"|");
         }
-        writer.write(msg);
+        writer.write("->"+msg+" : "+currentTime+" on "+date+"\n");
         writer.close();
     }
     public List<List<Item>> getItemsByCategory() {

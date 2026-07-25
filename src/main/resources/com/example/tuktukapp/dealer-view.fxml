@@ -1,14 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="tuktukjava.controllers.DealerController"
-            prefHeight="400.0" prefWidth="600.0">
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="tuktukjava.controllers.DealerController"
+      prefWidth="730" prefHeight="500"
+      style="-fx-background-color: white;">
 
-</AnchorPane>
+    <HBox alignment="CENTER_LEFT" spacing="12"
+          style="-fx-background-color: #f5f5f5;">
+        <padding><Insets top="14" right="24" bottom="14" left="24"/></padding>
+        <Button text="← Dealers" onAction="#onBackBtnClick"
+                style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-font-size: 15; -fx-font-weight: bold;"/>
+        <HBox HBox.hgrow="ALWAYS"/>
+        <Label text="4 randomly selected"
+               style="-fx-font-size: 12; -fx-text-fill: #888;"/>
+    </HBox>
+
+    <HBox spacing="16" VBox.vgrow="ALWAYS">
+        <padding><Insets top="24" right="24" bottom="24" left="24"/></padding>
+
+        <VBox prefWidth="160" spacing="12"
+              style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 16;">
+            <Label fx:id="name1" style="-fx-font-size: 14; -fx-font-weight: bold;"/>
+            <Label fx:id="codeLocation1" style="-fx-font-size: 11; -fx-text-fill: #666;"/>
+            <Label fx:id="phone1" style="-fx-font-size: 12; -fx-text-fill: #555;"/>
+        </VBox>
+
+        <VBox prefWidth="160" spacing="12"
+              style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 16;">
+            <Label fx:id="name2" style="-fx-font-size: 14; -fx-font-weight: bold;"/>
+            <Label fx:id="codeLocation2" style="-fx-font-size: 11; -fx-text-fill: #666;"/>
+            <Label fx:id="phone2" style="-fx-font-size: 12; -fx-text-fill: #555;"/>
+        </VBox>
+
+        <VBox prefWidth="160" spacing="12"
+              style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 16;">
+            <Label fx:id="name3" style="-fx-font-size: 14; -fx-font-weight: bold;"/>
+            <Label fx:id="codeLocation3" style="-fx-font-size: 11; -fx-text-fill: #666;"/>
+            <Label fx:id="phone3" style="-fx-font-size: 12; -fx-text-fill: #555;"/>
+        </VBox>
+
+        <VBox prefWidth="160" spacing="12"
+              style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 16;">
+            <Label fx:id="name4" style="-fx-font-size: 14; -fx-font-weight: bold;"/>
+            <Label fx:id="codeLocation4" style="-fx-font-size: 11; -fx-text-fill: #666;"/>
+            <Label fx:id="phone4" style="-fx-font-size: 12; -fx-text-fill: #555;"/>
+        </VBox>
+    </HBox>
+
+    <Label text="Sorted by location (A–Z)"
+           style="-fx-font-size: 11; -fx-text-fill: #888; -fx-padding: 0 0 0 24;"/>
+
+    <Separator style="-fx-padding: 10 0 10 0;"/>
+
+    <HBox alignment="CENTER_LEFT" spacing="12">
+        <padding><Insets top="10" right="24" bottom="16" left="24"/></padding>
+        <Button text="← Back" onAction="#onBackBtnClick"
+                prefWidth="130" prefHeight="36"
+                style="-fx-border-color: #cccccc; -fx-border-radius: 6; -fx-background-radius: 6; -fx-background-color: white;"/>
+        <HBox HBox.hgrow="ALWAYS"/>
+        <Button text="Reshuffle dealers" onAction="#onReshuffleBtnClick"
+                prefWidth="150" prefHeight="36"
+                style="-fx-border-color: #cccccc; -fx-border-radius: 6; -fx-background-radius: 6; -fx-background-color: white;"/>
+    </HBox>
+</VBox>

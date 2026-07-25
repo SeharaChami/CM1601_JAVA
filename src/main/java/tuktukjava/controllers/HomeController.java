@@ -23,7 +23,7 @@ public class HomeController {
     public Button cartDisBtn;
     public Button SearchBtn;
     private Inventory inventory;
-    private RandomDealers randomDealers;
+    private RandomDealers dealers;
 
     @FXML public Label welcomeText;
     @FXML public Button AddBtn;
@@ -33,7 +33,7 @@ public class HomeController {
     @FXML public Button DealerViewerBtn;
 
     public void setInventory(Inventory inventory) { this.inventory = inventory; }
-    public void setDealers(RandomDealers randomDealers) { this.randomDealers = randomDealers; }
+    public void setDealers(RandomDealers randomDealers) { this.dealers = randomDealers; }
 
     @FXML
     public void onAddBtnClick(ActionEvent actionEvent) throws IOException {
@@ -85,7 +85,7 @@ public class HomeController {
                 getClass().getResource("/com/example/tuktukapp/dealer-view.fxml")));
         Parent root = loader.load();
         DealerController controller = loader.getController();
-        controller.setRandomDealers(this.randomDealers);
+        controller.setRandomDealers(dealers);
         stage.setScene(new Scene(root, 730, 500));
     }
 

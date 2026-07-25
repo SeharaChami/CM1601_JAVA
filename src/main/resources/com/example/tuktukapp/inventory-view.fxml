@@ -6,7 +6,7 @@
 <VBox xmlns="http://javafx.com/javafx/17"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="tuktukjava.controllers.InventoryController"
-      prefWidth="730" prefHeight="600" spacing="0"
+      prefWidth="730" prefHeight="600"
       style="-fx-background-color: white;">
 
     <HBox alignment="CENTER_LEFT" spacing="12"
