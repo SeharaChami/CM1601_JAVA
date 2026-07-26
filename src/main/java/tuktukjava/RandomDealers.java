@@ -15,7 +15,10 @@ public class RandomDealers {
         List<Dealer> randomDealersList = new ArrayList<>();
         List<Integer> numberList = new ArrayList<>();
 
-        Dealer dealer;
+        if (formattedList.size() < 4) {
+            return formattedList; // not enough to pick 4, return all
+        }
+
         Random rand = new Random();
         int rounds = 0;
         while(rounds < 4){

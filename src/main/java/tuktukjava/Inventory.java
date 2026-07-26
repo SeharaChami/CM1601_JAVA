@@ -127,8 +127,14 @@ public class Inventory {
 
             for (int i = 0; i < categoryList.size() - 1; i++) {
                 for (int j = 0; j < categoryList.size() - 1 - i; j++) {
-                    int code1 = Integer.parseInt(categoryList.get(j).item[0].substring(1));
-                    int code2 = Integer.parseInt(categoryList.get(j+1).item[0].substring(1));
+                    String code1Str = categoryList.get(j).item[0];
+                    String code2Str = categoryList.get(j+1).item[0];
+
+                    if (code1Str == null || code2Str == null) continue;
+
+                    int code1 = Integer.parseInt(code1Str.substring(1));
+                    int code2 = Integer.parseInt(code2Str.substring(1));
+
                     if (code1 > code2) {
                         Item temp = categoryList.get(j);
                         categoryList.set(j, categoryList.get(j + 1));

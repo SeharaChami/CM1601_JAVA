@@ -32,7 +32,10 @@ public abstract class DirtyDataCleaner {
             if (newLine.length != fieldcount) {
                 newLine = line.split(";", -1);
             }
-
+            if (newLine.length != fieldcount) {
+                System.out.println("Skipped" + line);
+                continue;
+            }
             for (int j = 0; j < newLine.length; j++) {
                 newLine[j] = newLine[j].trim();
                 if (newLine[j].isEmpty()) {

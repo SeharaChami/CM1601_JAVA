@@ -8,3 +8,6 @@ P007|3-Wheeler Canopy Cover|Local|Rs 8500.50|5|BODYWORK|2023-08-15|canopy.png
 P008|Piaggio Ape Filter|Piaggio|Rs 1100.00|0|ENGINE|2024-02-28|filter_ape.jpeg
 P009|Ignition Coil 2-Stroke|Bajaj|Rs 2200.00|18|ELECTRICAL|2023-09-01|N/A
 P010|Rear View Mirror|N/A|Rs 800.00|45|BODYWORK|2023-10-10|mirror.png
+P011|kjk|yuy|Rs 6776.00|5|rtr|2026-07-15|Screenshot (1).png
+P012|ww|www|Rs 5.00|4|wewe|2026-06-30|Screenshot (32).png
+P013|yu|ui|Rs 78.00|9|tyutuyt|2026-07-08|logo1.png

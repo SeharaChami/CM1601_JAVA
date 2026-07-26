@@ -6,15 +6,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import tuktukjava.Inventory;
 import tuktukjava.Item;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
@@ -34,11 +35,11 @@ public class InventoryController {
         this.inventory = inventory;
         categoryNames = inventory.getCategories();
         groupedItems = inventory.getItemsByCategory();
-        renderTable();
+        generateTable();
         updateSum();
     }
 
-    private void renderTable() {
+    private void generateTable() {
         tableContent.getChildren().clear();
         int count = 0;
 
@@ -71,7 +72,8 @@ public class InventoryController {
                         cell(item.item[2], 100, "#111"),
                         cell(item.item[3], 110, "#111"),
                         cell(item.item[4], 60,  qtyColor),
-                        cell(item.item[6], 120, "#111")
+                        cell(item.item[6], 120, "#111"),
+                        imageCell(item.item[7])
                 );
 
                 tableContent.getChildren().add(row);
@@ -89,6 +91,22 @@ public class InventoryController {
         label.setPrefWidth(width);
         label.setTextFill(javafx.scene.paint.Color.web(color));
         return label;
+    }
+    private ImageView imageCell(String filename) {
+        ImageView imageView = new ImageView();
+        imageView.setFitWidth(40);
+        imageView.setFitHeight(40);
+        imageView.setPreserveRatio(true);
+
+        try {
+            File file = new File("src/main/resources/images/" + filename);
+            if (file.exists()) {
+                imageView.setImage(new Image(file.toURI().toString()));
+            }
+        } catch (Exception e) {
+        }
+
+        return imageView;
     }
 
     @FXML

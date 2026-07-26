@@ -31,7 +31,7 @@ public class FileManager {
 
     public static List<Dealer> loadDealers() throws IOException {
         File cleanFile = new File(cleanDealerRoot);
-        if (cleanFile.exists()){
+        if (cleanFile.exists() && cleanFile.length()>0){
             return readCleanDealerFile(cleanFile);
         }else{
             DealerCleaner cleaner = new DealerCleaner(new File(legacyDealerRoot),4);

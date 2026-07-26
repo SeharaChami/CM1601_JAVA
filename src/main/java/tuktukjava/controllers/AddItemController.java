@@ -12,12 +12,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import tuktukjava.Inventory;
 import tuktukjava.Item;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Objects;
 
@@ -36,7 +39,6 @@ public class AddItemController {
     @FXML private TextField priceField;
     @FXML private TextField fieldInput;
     @FXML private TextField quantityField;
-    @FXML private TextField imgField;
     @FXML private DatePicker datePicker;
     @FXML private Label nameLabel;
     @FXML private Label brandLabel;
@@ -53,6 +55,7 @@ public class AddItemController {
     String field;
     String quantity;
     String date;
+    private File imgFile;
     String img;
     @FXML
     public void initialize(){
@@ -127,49 +130,36 @@ public class AddItemController {
         }
     }
     @FXML
-    public void onImgRefField(ActionEvent actionEvent) {
-        img = item.getImg(imgField.getText());
-        if (img == null){
-            imgLabel.setText("Provide in only \"png\",\"jpg\",\"jpeg\"file format..");
-        }
-        else {
-            imgLabel.setText(null);
-            item.setImg(img);
-        }
-    }
-    @FXML
     public void onAddButtonClick(ActionEvent actionEvent) throws IOException {
+        onDatePicker(actionEvent);
+        onBrandText(actionEvent);
+        onFieldText(actionEvent);
+        onQtyText(actionEvent);
+        onPriceText(actionEvent);
+        onNameText(actionEvent);
+
         name = nameField.getText().trim();
         brand = brandField.getText().trim();
         price = priceField.getText().trim();
         field = fieldInput.getText().trim();
         quantity = quantityField.getText().trim();
-        img = imgField.getText().trim();
-
-        if (datePicker.getValue() == null) {
-            msgLabel.setText("Please select a date.");
-            return;
-        }
+        img = imgFile.getName().trim();
         date = datePicker.getValue().toString();
 
-        if (name.isEmpty() || brand.isEmpty() || price.isEmpty() ||
-                field.isEmpty() || quantity.isEmpty() || img.isEmpty()) {
-            msgLabel.setText("Please fill all fields.");
-            return;
-        }
         String formattedPrice = item.getPrice(price);
         String validQty = item.getQty(quantity);
 
-        if (formattedPrice == null) {
-            priceLabel.setText("Invalid price.");
+        if (imgFile == null) {
+            imgLabel.setText("Please choose an image");
             return;
         }
-        if (validQty == null) {
-            qtyLabel.setText("Invalid quantity.");
-            return;
-        }
-        if (item.getImg(img) == null) {
-            imgLabel.setText("Invalid image format.");
+        try{
+            File imgDir = new File("src/main/resources/images/");
+            if(!imgDir.exists())imgDir.mkdirs();
+            File dest = new File(imgDir,imgFile.getName());
+            Files.copy(imgFile.toPath(),dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        }catch (IOException e){
+            imgLabel.setText("Could not save image..");
             return;
         }
 
@@ -178,26 +168,34 @@ public class AddItemController {
         part[1] = name;
         part[2] = brand;
         part[3] = formattedPrice;
-        part[4] = quantity;
+        part[4] = validQty;
         part[5] = field;
         part[6] = date;
-        part[7] = img;
+        part[7] = imgFile.getName();
         item.setItem(part);
 
         inventory.add(item);
         msgLabel.setText("Item " + item.getCode() + " added successfully.");
-    } @FXML
+        onClearBtnClick(actionEvent);
+    }
+    @FXML
     public void onClearBtnClick(ActionEvent actionEvent) {
         itemCodeField.setText(inventory.generateItemCode());
         nameField.setText(null);
         brandField.setText(null);
         priceField.setText(null);
-        brandField.setText(null);
         quantityField.setText(null);
-        imgField.setText(null);
         fieldInput.setText(null);
+        imgFile = null;
         datePicker.setValue(null);
 
+        nameLabel.setText(null);
+        brandLabel.setText(null);
+        priceLabel.setText(null);
+        qtyLabel.setText(null);
+        fieldLabel.setText(null);
+        imgLabel.setText(null);
+        dateLabel.setText(null);
     }
     @FXML
     public void onItemAdded(MouseEvent mouseEvent) {
@@ -212,5 +210,25 @@ public class AddItemController {
         controller.setInventory(this.inventory);
         stage.setScene(new Scene(root, 730, 500));
         stage.show();
+    }
+    @FXML
+    public void onChooseImageClick(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.jpeg")
+        );
+
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        File file = fileChooser.showOpenDialog(stage);
+
+        if (file != null) {
+            String name = file.getName().toLowerCase();
+            if (name.endsWith(".png") || name.endsWith(".jpg") || name.endsWith(".jpeg")) {
+                imgFile = file;
+                imgLabel.setText(file.getName());
+            } else {
+                imgLabel.setText("Only png, jpg, jpeg allowed");
+            }
+        }
     }
 }
