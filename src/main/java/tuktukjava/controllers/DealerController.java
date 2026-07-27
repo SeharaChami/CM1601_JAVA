@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import tuktukjava.Dealer;
+import tuktukjava.Inventory;
 import tuktukjava.RandomDealers;
 
 import java.io.IOException;
@@ -31,9 +32,12 @@ public class DealerController {
     @FXML private Label phone2;
     @FXML private Label phone3;
     @FXML private Label phone4;
-
+    private Inventory inventory;
     private RandomDealers dealers;
 
+    public void setInventory(Inventory inventory){
+        this.inventory = inventory;
+    }
     public void setRandomDealers(RandomDealers randomDealers) {
         this.dealers = randomDealers;
         generateCards();
@@ -63,6 +67,8 @@ public class DealerController {
                 getClass().getResource("/com/example/tuktukapp/homePage-view.fxml")));
         Parent root = loader.load();
         HomeController controller = loader.getController();
+        controller.setDealers(dealers);
+        controller.setInventory(inventory);
         stage.setScene(new Scene(root, 730, 500));
         stage.show();
     }

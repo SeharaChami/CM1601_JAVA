@@ -7,11 +7,14 @@ public class Item {
     private String code;
     private String name;
     private String brand;
+
     public String price;
+
     public String qty;
     private String field;
     private String date;
     public String img;
+    public String threshold;
 
     public Item(String[] line){
         this.item = line;
@@ -52,6 +55,10 @@ public class Item {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public void setThreshold(String threshold) {
+        this.threshold = threshold;
     }
 
     public String getCode() {

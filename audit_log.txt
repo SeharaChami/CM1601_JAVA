@@ -5,3 +5,24 @@ P011|q|q|Rs 3.00|3|er|2026-07-21|Screenshot (1).png|->P011 added to the inventor
 P011|kjk|yuy|Rs 6776.00|5|rtr|2026-07-15|Screenshot (1).png|->P011 added to the inventory : 10:27:38.436932100 on 2026-07-26
 P012|ww|www|Rs 5.00|4|wewe|2026-06-30|Screenshot (32).png|->P012 added to the inventory : 10:47:33.738277900 on 2026-07-26
 P013|yu|ui|Rs 78.00|9|tyutuyt|2026-07-08|logo1.png|->P013 added to the inventory : 10:55:31.578733600 on 2026-07-26
+P002|TVS King Brake Pad|TVS|Rs 1250.00|4|BRAKES|2023-05-12|brakepad.png|->SALE: 4 units sold : 11:10:15.526450200 on 2026-07-27
+P001|Bajaj 4-Stroke Piston|Bajaj|Rs 4500.00|13|ENGINE|2023-10-12|piston4s.jpg|->SALE: 2 units sold : 11:10:15.527738100 on 2026-07-27
+P011|k|k|Rs 4444.00|3|2|2026-07-02|Screenshot (7).png|->P011 added to the inventory : 11:58:05.886629800 on 2026-07-27
+P012|q|qqq|Rs 2.00|2|q|2026-07-08|Screenshot (3).png|->P012 added to the inventory : 12:20:01.813460100 on 2026-07-27
+P002|TVS King Brake Pad|TVS|Rs 1250.00|4|BRAKES|2023-05-12|brakepad.png|3|->null updated : 12:20:44.337363900 on 2026-07-27
+P013|yuyu|qq|null|7|k|2026-07-09|Screenshot (2).png|->P013 added to the inventory : 13:45:03.421017600 on 2026-07-27
+P013|w|w|null|3|q|2026-07-07|Screenshot (3).png|->P013 added to the inventory : 13:56:42.206887800 on 2026-07-27
+P014|wwww|dd|null|3|2|2026-07-17|Screenshot (8).png|null|->P014 added to the inventory : 14:03:40.595355900 on 2026-07-27
+P015|www|d|null|33|2|2026-07-17|Screenshot (3).png|10|->P015 added to the inventory : 14:13:42.468676300 on 2026-07-27
+P001|Bajaj 4-Stroke Piston|Bajaj|Rs 4500.00|4|ENGINE|2023-10-12|piston4s.jpg|10|->SALE: 9 units sold : 14:17:37.568494500 on 2026-07-27
+P002|TVS King Brake Pad|TVS|Rs 1250.00|2|BRAKES|2023-05-12|brakepad.png|3|->SALE: 2 units sold : 14:17:37.574503 on 2026-07-27
+P016|hgyur|sgiys|null|2|fgyg|2026-07-16|Screenshot (4).png|10|->P016 added to the inventory : 14:18:16.034685800 on 2026-07-27
+P017|wwww|e|null|3|e|2026-07-16|Screenshot (1).png|10|->P017 added to the inventory : 14:23:20.532416600 on 2026-07-27
+P018|huhu|yri|null|3|33|2026-07-17|Screenshot (6).png|q|->P018 added to the inventory : 14:24:16.827305500 on 2026-07-27
+P019|iiu|huhu|Rs 45.00|4|huhu|2026-07-11|Screenshot (8).png|10|->P019 added to the inventory : 14:30:31.071301900 on 2026-07-27
+P011|k|k|Rs 4444.00|3|2|2026-07-02|Screenshot (7).png|10|->P011 deleted : 14:33:25.369905 on 2026-07-27
+P015|www|d|null|33|2|2026-07-17|Screenshot (3).png|10|->P015 deleted : 14:33:44.424986600 on 2026-07-27
+P016|hgyur|sgiys|null|2|fgyg|2026-07-16|Screenshot (4).png|10|->P016 deleted : 14:33:50.241470500 on 2026-07-27
+P017|wwww|e|null|3|e|2026-07-16|Screenshot (1).png|10|->P017 deleted : 14:33:56.185083800 on 2026-07-27
+P018|huhu|yri|null|3|33|2026-07-17|Screenshot (6).png|q|->P018 deleted : 14:34:02.864982700 on 2026-07-27
+P019|iiu|huhu|Rs 45.00|4|huhu|2026-07-11|Screenshot (8).png|10|->P019 deleted : 14:34:10.641271200 on 2026-07-27

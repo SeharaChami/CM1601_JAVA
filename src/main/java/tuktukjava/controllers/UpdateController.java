@@ -13,13 +13,16 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import tuktukjava.Inventory;
 import tuktukjava.Item;
+import tuktukjava.RandomDealers;
 
 import java.io.IOException;
 import java.util.Objects;
 
 public class UpdateController {
+    public TextField thresholdField;
     private Item current;
     private Inventory inventory;
+    private RandomDealers dealers;
     public TextField searchCodeField;
     public Label editingLabel;
     public HBox fieldsBox;
@@ -38,6 +41,9 @@ public class UpdateController {
     public void setInventory(Inventory inventory){
         this.inventory = inventory;
     }
+    public void setDealers(RandomDealers dealers){
+        this.dealers = dealers;
+    }
 
     @FXML
     private void onBackBtnClick(ActionEvent event) throws IOException {
@@ -47,6 +53,7 @@ public class UpdateController {
         Parent root = loader.load();
         HomeController controller = loader.getController();
         controller.setInventory(this.inventory);
+        controller.setDealers(this.dealers);
         stage.setScene(new Scene(root, 730, 500));
         stage.show();
     }
@@ -69,6 +76,7 @@ public class UpdateController {
         categoryField.setText(current.item[5]);
         dateField.setText(current.item[6]);
         imgField.setText(current.item[7]);
+        thresholdField.setText(current.item[8]);
 
         showFields();
     }
@@ -83,9 +91,10 @@ public class UpdateController {
         current.item[5] = categoryField.getText().trim();
         current.item[6] = dateField.getText().trim();
         current.item[7] = imgField.getText().trim();
+        current.item[8] = thresholdField.getText().trim();
 
         inventory.update(current);
-        msgLabel.setText("Item " + current.getCode() + " updated.");
+        msgLabel.setText("Item " + current.item[0] + " updated.");
     }
     private void hideFields() {
         editingLabel.setVisible(false); editingLabel.setManaged(false);

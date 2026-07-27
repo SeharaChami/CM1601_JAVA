@@ -16,6 +16,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import tuktukjava.Inventory;
 import tuktukjava.Item;
+import tuktukjava.RandomDealers;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,8 +30,10 @@ public class AddItemController {
     public Button clearBtn;
     @FXML
     public Button backBtn;
+    public TextField thresholdField;
+    public Label fieldLabel1;
     private Inventory inventory;
-    Item item = new Item(new String[8]);
+    Item item = new Item(new String[9]);
     @FXML
     public Button addItem;
     @FXML private TextField itemCodeField;
@@ -61,6 +64,8 @@ public class AddItemController {
     public void initialize(){
 
     }
+    private RandomDealers dealers;
+    public void setDealers(RandomDealers randomDealers) { this.dealers = randomDealers; }
 
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
@@ -71,83 +76,79 @@ public class AddItemController {
 
     @FXML
     public void onNameText(ActionEvent actionEvent) {
+
+    }
+    @FXML
+    public void onBrandText(ActionEvent actionEvent) {
+
+    }
+    @FXML
+    public void onPriceText(ActionEvent actionEvent) {
+
+    }
+    @FXML
+    public void onQtyText(ActionEvent actionEvent) {
+
+    }
+    @FXML
+    public void onFieldText(ActionEvent actionEvent) {
+
+    }
+    @FXML
+    public void onDatePicker(ActionEvent actionEvent) {
+
+    }
+    @FXML
+    public void onAddButtonClick(ActionEvent actionEvent) throws IOException {
         if(nameField.getText().isEmpty()){
             nameLabel.setText("Name cannot be empty..");
         }
         else
-        {nameLabel.setText(null);
-        item.setName(nameField.getText());
+        {
+            nameLabel.setText(null);
+            name = nameField.getText();
         }
-    }
-    @FXML
-    public void onBrandText(ActionEvent actionEvent) {
+
         if (brandField.getText().isEmpty()){
             brandLabel.setText("Brand cannot be empty..");
         }
         else {
             brandLabel.setText(null);
-            item.setBrand(brandField.getText());
+            brand = brandField.getText();
         }
-    }
-    @FXML
-    public void onPriceText(ActionEvent actionEvent) {
+
         price = item.getPrice(priceField.getText());
         if(price == null){
             priceLabel.setText("Provide only numeric value greater that 0..");
+            return;
         }
         else {
             priceLabel.setText(null);
-            item.setPrice(price);
         }
-    }
-    @FXML
-    public void onQtyText(ActionEvent actionEvent) {
         quantity = item.getQty(quantityField.getText());
         if(quantity == null){
             qtyLabel.setText("Provide only numeric value greater that 0..");
+            return;
         }
         else {
             qtyLabel.setText(null);
-            item.setQty(quantity);
         }
-    }
-    @FXML
-    public void onFieldText(ActionEvent actionEvent) {
         if (fieldInput.getText().isEmpty()) {
             fieldLabel.setText("Field cannot be empty..");
         } else {
             fieldLabel.setText(null);
-            item.setField(fieldInput.getText());
-        }
-    }
-    @FXML
-    public void onDatePicker(ActionEvent actionEvent) {
-        if (datePicker.getValue()==null) {
-            dateLabel.setText("Provide a valid date..");
-        } else {
-            dateLabel.setText(null);
-            item.setDate(datePicker.getValue().toString());
-        }
-    }
-    @FXML
-    public void onAddButtonClick(ActionEvent actionEvent) throws IOException {
-        onDatePicker(actionEvent);
-        onBrandText(actionEvent);
-        onFieldText(actionEvent);
-        onQtyText(actionEvent);
-        onPriceText(actionEvent);
-        onNameText(actionEvent);
+            field = fieldInput.getText();
 
-        name = nameField.getText().trim();
-        brand = brandField.getText().trim();
-        price = priceField.getText().trim();
-        field = fieldInput.getText().trim();
-        quantity = quantityField.getText().trim();
+        }
+
         img = imgFile.getName().trim();
         date = datePicker.getValue().toString();
 
-        String formattedPrice = item.getPrice(price);
-        String validQty = item.getQty(quantity);
+        String thresholdText = thresholdField.getText();
+        String thresholdInput = thresholdText.trim();
+        if(thresholdText == null || thresholdText.trim().isEmpty()){
+            thresholdInput = "10";
+        }
 
         if (imgFile == null) {
             imgLabel.setText("Please choose an image");
@@ -163,15 +164,17 @@ public class AddItemController {
             return;
         }
 
-        String[] part = new String[8];
+        String[] part = new String[9];
         part[0] = item.getCode();
         part[1] = name;
         part[2] = brand;
-        part[3] = formattedPrice;
-        part[4] = validQty;
+        part[3] = price;
+        part[4] = quantity;
         part[5] = field;
         part[6] = date;
         part[7] = imgFile.getName();
+        part[8] = thresholdInput;
+
         item.setItem(part);
 
         inventory.add(item);
@@ -188,6 +191,7 @@ public class AddItemController {
         fieldInput.setText(null);
         imgFile = null;
         datePicker.setValue(null);
+        thresholdField.setText(null);
 
         nameLabel.setText(null);
         brandLabel.setText(null);
@@ -208,6 +212,7 @@ public class AddItemController {
         Parent root = loader.load();
         HomeController controller = loader.getController();
         controller.setInventory(this.inventory);
+        controller.setDealers(dealers);
         stage.setScene(new Scene(root, 730, 500));
         stage.show();
     }
@@ -225,7 +230,7 @@ public class AddItemController {
             String name = file.getName().toLowerCase();
             if (name.endsWith(".png") || name.endsWith(".jpg") || name.endsWith(".jpeg")) {
                 imgFile = file;
-                imgLabel.setText(file.getName());
+                imgLabel.setText(file.getName().trim());
             } else {
                 imgLabel.setText("Only png, jpg, jpeg allowed");
             }

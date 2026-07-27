@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import tuktukjava.Inventory;
 import tuktukjava.Item;
+import tuktukjava.RandomDealers;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +29,7 @@ public class InventoryController {
     public HBox summaryBox;
     private  List<Item> items;
     private Inventory inventory;
+    private RandomDealers dealers;
     private List<String> categoryNames;
     private List<List<Item>> groupedItems;
 
@@ -37,6 +39,9 @@ public class InventoryController {
         groupedItems = inventory.getItemsByCategory();
         generateTable();
         updateSum();
+    }
+    public void setDealers(RandomDealers dealers){
+        this.dealers = dealers;
     }
 
     private void generateTable() {
@@ -117,6 +122,7 @@ public class InventoryController {
         Parent root = loader.load();
         HomeController controller = loader.getController();
         controller.setInventory(this.inventory);
+        controller.setDealers(this.dealers);
         stage.setScene(new Scene(root, 730, 500));
     }
     private void updateSum() {
@@ -132,6 +138,7 @@ public class InventoryController {
                     totalQty += qty;
 
                     String priceStr = item.item[3];
+                    if (priceStr == null) continue;
                     String numPrice = "";
                     boolean found = false;
                     for (int i = 0; i < priceStr.length(); i++) {

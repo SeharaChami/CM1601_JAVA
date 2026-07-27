@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import tuktukjava.FileManager;
 import tuktukjava.Inventory;
 import tuktukjava.Item;
+import tuktukjava.RandomDealers;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,11 +33,15 @@ public class DeleteController {
     @FXML private Label msgLabel;
     @FXML
     private Button deleteBtn;
+    private RandomDealers dealers;
     private Inventory inventory;
     private Item current ;
 
     public void setInventory(Inventory inventory){
         this.inventory = inventory;
+    }
+    public void setDealers(RandomDealers dealers){
+        this.dealers = dealers;
     }
 
     @FXML
@@ -83,6 +88,7 @@ public class DeleteController {
         Parent root = loader.load();
         HomeController controller = loader.getController();
         controller.setInventory(this.inventory);
+        controller.setDealers(this.dealers);
         stage.setScene(new Scene(root, 730, 500));
         stage.show();
     }

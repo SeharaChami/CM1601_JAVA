@@ -58,16 +58,20 @@ public class Inventory {
         }
         return null;
     }
-    public void lowStockMon(){
-        List<Item> lowItems = null;
-        int limit = 10;
-        for(Item element : formattedList){
-            int qty = Integer.parseInt(element.item[4].trim());
-            if(qty < limit && qty > 0){
-                System.out.println(element.item[0]);
+    public List<Item> getLowStockItems() {
+        List<Item> lowItems = new ArrayList<>();
+        for (Item item : formattedList) {
+            int qty = 0;
+            int threshold = 10;
+            try { qty = Integer.parseInt(item.item[4].trim()); } catch (NumberFormatException ignored) {}
+            if (item.item.length > 8 && item.item[8] != null && !item.item[8].trim().equals("null")) {
+                try { threshold = Integer.parseInt(item.item[8].trim()); } catch (NumberFormatException ignored) {}
             }
-            lowItems.add(element);
+            if (qty < threshold) {
+                lowItems.add(item);
+            }
         }
+        return lowItems;
     }
     public String generateItemCode() {
         String itemCode = "";
@@ -155,5 +159,59 @@ public class Inventory {
             }
         }
         return categories;
+    }
+    public List<Item> search(String name, String brand, String category, double minPrice, double maxPrice, int minQty) {
+        List<Item> results = new ArrayList<>();
+
+        for (Item item : formattedList) {
+            boolean nameMatch = false;
+            boolean brandMatch = false;
+            boolean categoryMatch = false;
+            if(name.isEmpty() || item.item[1].toLowerCase().contains(name)){
+                nameMatch =true;
+            }
+            if(brand.isEmpty() || item.item[2].toLowerCase().contains(brand)){
+                brandMatch = true;
+            }
+            if(category.isEmpty() || item.item[5].toLowerCase().contains(category)){
+                categoryMatch = true;
+            }
+
+            double itemPrice = 0;
+            int itemQty = 0;
+
+            String priceStr = "";
+            boolean found = false;
+            for (int i = 0; i < item.item[3].length(); i++) {
+                char c = item.item[3].charAt(i);
+                if (Character.isDigit(c)) {
+                    priceStr = priceStr + c;
+                    found = true;
+                }
+                else if (c == '.' && found) {
+                    priceStr = priceStr + c;
+                }
+            }
+
+            try {
+                itemPrice = Double.parseDouble(priceStr);
+            } catch (NumberFormatException ignored) {}
+            try {
+                itemQty = Integer.parseInt(item.item[4].trim());
+            } catch (NumberFormatException ignored) {}
+
+            boolean priceMatch = (itemPrice >= minPrice && itemPrice <= maxPrice);
+            boolean qtyMatch = (itemQty >= minQty);
+
+            if (nameMatch && brandMatch && categoryMatch && priceMatch && qtyMatch) {
+                results.add(item);
+            }
+        }
+
+        return results;
+    }
+
+    public List<Item> getFormattedList() {
+        return formattedList;
     }
 }

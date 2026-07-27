@@ -1,14 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="tuktukjava.controllers.CartController"
+      prefWidth="730" prefHeight="600" spacing="0"
+      style="-fx-background-color: white;">
 
-</AnchorPane>
+    <HBox alignment="CENTER_LEFT"
+          style="-fx-background-color: #f5f5f5;">
+        <padding><Insets top="14" right="24" bottom="14" left="24"/></padding>
+        <Button text="← Point of sale" onAction="#onBackBtnClick"
+                style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-font-size: 15; -fx-font-weight: bold;"/>
+    </HBox>
+
+    <VBox spacing="16" VBox.vgrow="ALWAYS">
+        <padding><Insets top="20" right="24" bottom="0" left="24"/></padding>
+
+        <HBox spacing="12" alignment="CENTER_LEFT">
+            <VBox spacing="4">
+                <Label text="Item code" style="-fx-font-size: 12; -fx-text-fill: #666;"/>
+                <TextField fx:id="codeField" promptText="e.g. P001" prefWidth="260"/>
+            </VBox>
+            <VBox spacing="4">
+                <Label text="Qty" style="-fx-font-size: 12; -fx-text-fill: #666;"/>
+                <TextField fx:id="qtyField" text="1" prefWidth="80"/>
+            </VBox>
+            <VBox spacing="4" alignment="BOTTOM_LEFT">
+                <Label text=" "/>
+                <Button text="Add" onAction="#onAddBtnClick" prefWidth="100" prefHeight="32"
+                        style="-fx-background-color: #222; -fx-text-fill: white; -fx-border-radius: 6; -fx-background-radius: 6;"/>
+            </VBox>
+        </HBox>
+
+        <Label fx:id="errorLabel" style="-fx-text-fill: red; -fx-font-size: 11;"/>
+
+        <HBox style="-fx-background-color: #f0f0f0; -fx-padding: 8 0 8 0;">
+            <Label text="Code"       prefWidth="80"  style="-fx-font-size: 12; -fx-text-fill: #888;"/>
+            <Label text="Name"       prefWidth="240" style="-fx-font-size: 12; -fx-text-fill: #888;"/>
+            <Label text="Unit price" prefWidth="110" style="-fx-font-size: 12; -fx-text-fill: #888;"/>
+            <Label text="Qty"        prefWidth="60"  style="-fx-font-size: 12; -fx-text-fill: #888;"/>
+            <Label text="Subtotal"   prefWidth="120" style="-fx-font-size: 12; -fx-text-fill: #888;"/>
+            <Label text="Del"        prefWidth="40"  style="-fx-font-size: 12; -fx-text-fill: #888;"/>
+        </HBox>
+
+        <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+                    style="-fx-background: white; -fx-border-color: transparent;">
+            <VBox fx:id="cartTableBox" spacing="0"/>
+        </ScrollPane>
+
+        <HBox spacing="16">
+            <VBox prefWidth="220"
+                  style="-fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 12;">
+                <Label text="Items in cart" style="-fx-font-size: 12; -fx-text-fill: #666;"/>
+                <Label fx:id="itemCountLabel" text="0" style="-fx-font-size: 22; -fx-font-weight: bold;"/>
+            </VBox>
+
+            <VBox HBox.hgrow="ALWAYS"
+                  style="-fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 12;">
+                <HBox>
+                    <Label text="Subtotal" HBox.hgrow="ALWAYS" style="-fx-font-size: 12;"/>
+                    <Label fx:id="subtotalLabel" text="Rs 0.00" style="-fx-font-size: 12;"/>
+                </HBox>
+                <HBox>
+                    <Label fx:id="bulkDiscLabel" text="" HBox.hgrow="ALWAYS" style="-fx-font-size: 12; -fx-text-fill: green;"/>
+                    <Label fx:id="bulkDiscAmount" text="" style="-fx-font-size: 12; -fx-text-fill: green;"/>
+                </HBox>
+                <HBox>
+                    <Label fx:id="synergyDiscLabel" text="" HBox.hgrow="ALWAYS" style="-fx-font-size: 12; -fx-text-fill: green;"/>
+                    <Label fx:id="synergyDiscAmount" text="" style="-fx-font-size: 12; -fx-text-fill: green;"/>
+                </HBox>
+                <Separator/>
+                <HBox>
+                    <Label text="Total" HBox.hgrow="ALWAYS" style="-fx-font-size: 14; -fx-font-weight: bold;"/>
+                    <Label fx:id="totalLabel" text="Rs 0.00" style="-fx-font-size: 14; -fx-font-weight: bold;"/>
+                </HBox>
+                <Label fx:id="discountReasonLabel" text="" style="-fx-font-size: 11; -fx-text-fill: #888;"/>
+            </VBox>
+        </HBox>
+
+        <Label fx:id="msgLabel" style="-fx-text-fill: green; -fx-font-size: 12;"/>
+    </VBox>
+
+    <Separator/>
+
+    <HBox alignment="CENTER_LEFT" spacing="12">
+        <padding><Insets top="10" right="24" bottom="16" left="24"/></padding>
+        <Button text="Clear cart" onAction="#onClearCartClick" prefWidth="130" prefHeight="36"
+                style="-fx-border-color: #cccccc; -fx-border-radius: 6; -fx-background-radius: 6; -fx-background-color: white;"/>
+        <HBox HBox.hgrow="ALWAYS"/>
+        <Button text="Process sale" onAction="#onProcessSaleClick" prefWidth="140" prefHeight="36"
+                style="-fx-background-color: #222; -fx-text-fill: white; -fx-border-radius: 6; -fx-background-radius: 6;"/>
+    </HBox>
+</VBox>

@@ -47,7 +47,17 @@ public class FileManager {
         while ((line = reader.readLine()) != null) {
             if (line.trim().isEmpty()) continue;
             String[] parts = line.split("\\|", -1);
-            if (parts.length == 8) {
+            if (parts.length >= 8) {
+                if (parts.length == 8) {
+                    String[] temp = new String[9];
+                    for (int i = 0; i < 8; i++) {
+                        temp[i] = parts[i];
+                    }
+                    temp[8] = "10";
+                    parts = temp;
+                }
+            }
+            if (parts.length == 9) {
                 items.add(new Item(parts));
             }
         }
