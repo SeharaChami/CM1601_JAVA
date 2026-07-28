@@ -59,11 +59,12 @@ public class DealerController {
             phones[i].setText(randDealers.get(i).getPhone());
         }
     }
-
+    @FXML
     public void onReshuffleBtnClick(ActionEvent actionEvent) {
         generateCards();
     }
 
+    @FXML
     public void onBackBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(

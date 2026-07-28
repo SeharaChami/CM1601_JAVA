@@ -22,15 +22,25 @@ import java.util.List;
 import java.util.Objects;
 
 public class InventoryController {
+    @FXML
     public VBox tableContent;
+    @FXML
     public Label totalItemsLabel;
+    @FXML
     public Label totalQtyLabel;
+    @FXML
     public Label totalValueLabel;
+    @FXML
     public HBox summaryBox;
+    @FXML
     private  List<Item> items;
+    @FXML
     private Inventory inventory;
+    @FXML
     private RandomDealers dealers;
+    @FXML
     private List<String> categoryNames;
+    @FXML
     private List<List<Item>> groupedItems;
 
     public void setInventory(Inventory inventory) {

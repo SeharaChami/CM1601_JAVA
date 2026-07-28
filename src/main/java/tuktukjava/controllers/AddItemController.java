@@ -30,8 +30,11 @@ public class AddItemController {
     public Button clearBtn;
     @FXML
     public Button backBtn;
+    @FXML
     public TextField thresholdField;
+    @FXML
     public Label fieldLabel1;
+    @FXML
     private Inventory inventory;
     Item item = new Item(new String[9]);
     @FXML
@@ -204,7 +207,7 @@ public class AddItemController {
     @FXML
     public void onItemAdded(MouseEvent mouseEvent) {
     }
-
+    @FXML
     public void onBackBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(

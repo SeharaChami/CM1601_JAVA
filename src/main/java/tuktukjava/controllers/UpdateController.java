@@ -19,25 +19,44 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class UpdateController {
+    @FXML
     public TextField thresholdField;
-    private Item current;
-    private Inventory inventory;
-    private RandomDealers dealers;
+    @FXML
     public TextField searchCodeField;
+    @FXML
     public Label editingLabel;
+    @FXML
     public HBox fieldsBox;
+    @FXML
     public TextField nameField;
+    @FXML
     public TextField brandField;
+    @FXML
     public HBox fieldsBox2;
+    @FXML
     public TextField priceField;
+    @FXML
     public TextField quantityField;
+    @FXML
     public TextField categoryField;
+    @FXML
     public HBox fieldsBox3;
+    @FXML
     public TextField dateField;
+    @FXML
     public TextField imgField;
+    @FXML
     public Label msgLabel;
+    @FXML
     public Label errorLabel;
+    @FXML
     public Button saveBtn;
+    private Item current;
+
+    private Inventory inventory;
+
+    private RandomDealers dealers;
+
     public void setInventory(Inventory inventory){
         this.inventory = inventory;
     }
@@ -57,7 +76,7 @@ public class UpdateController {
         stage.setScene(new Scene(root, 730, 500));
         stage.show();
     }
-
+    @FXML
     public void onSearchBtnClick(ActionEvent actionEvent) {
         String code = searchCodeField.getText().trim().toUpperCase();
         current = inventory.searchByCode(code);

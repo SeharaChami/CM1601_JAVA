@@ -20,7 +20,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class HomeController {
+    @FXML
     public Button cartDisBtn;
+    @FXML
     public Button SearchBtn;
     private Inventory inventory;
     private RandomDealers dealers;
@@ -116,6 +118,7 @@ public class HomeController {
         Parent root = loader.load();
         UpdateController controller = loader.getController();
         controller.setInventory(this.inventory);
+        controller.setDealers(this.dealers);
         stage.setScene(new Scene(root, 730, 500));
     }
 
@@ -140,7 +143,7 @@ public class HomeController {
         controller.setInventory(this.inventory);
         stage.setScene(new Scene(root, 730, 500));
     }
-@FXML
+    @FXML
     public void onCartBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/com/example/tuktukapp/POS-view.fxml")));
