@@ -91,7 +91,10 @@ public class UpdateController {
         current.item[5] = categoryField.getText().trim();
         current.item[6] = dateField.getText().trim();
         current.item[7] = imgField.getText().trim();
-        current.item[8] = thresholdField.getText().trim();
+        String t = thresholdField.getText();
+        if(t.trim().isEmpty()){
+            current.item[8] = "10";
+        }else current.item[8] = thresholdField.getText().trim();
 
         inventory.update(current);
         msgLabel.setText("Item " + current.item[0] + " updated.");

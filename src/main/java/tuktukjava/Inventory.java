@@ -28,7 +28,7 @@ public class Inventory {
         Item item = newItem;
         formattedList.add(item);
         saveItem(item);
-        String msg = item.getCode()+" added to the inventory";
+        String msg = " added to the inventory";
         saveToAuditLog(item,msg);
     }
 
@@ -43,12 +43,12 @@ public class Inventory {
         if (toRemove != null) {
             formattedList.remove(toRemove);
             FileManager.saveItems(formattedList);
-            saveToAuditLog(item, item.item[0] + " deleted");
+            saveToAuditLog(item, " deleted");
         }
     }
     public void update(Item item) throws IOException {
         FileManager.saveItems(formattedList);
-        saveToAuditLog(item,item.getCode()+" updated");
+        saveToAuditLog(item," updated");
     }
     public Item searchByCode(String code){
         for (Item item:formattedList){
@@ -103,10 +103,7 @@ public class Inventory {
         LocalDate date = LocalDate.now();
         String root = "audit_log.txt";
         BufferedWriter writer = new BufferedWriter(new FileWriter(root,true));
-        for(String detail : item.item){
-            writer.write(detail+"|");
-        }
-        writer.write("->"+msg+" : "+currentTime+" on "+date+"\n");
+        writer.write(item.item[0]+"->"+msg+" : "+currentTime+" on "+date+"\n");
         writer.close();
     }
     public List<List<Item>> getItemsByCategory() {
