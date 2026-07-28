@@ -1,5 +1,5 @@
 # Malabe Tuk-Tuk & Three-Wheeler Spares Depot
-
+> GitHub: https://github.com/SeharaChami/CM1601_JAVA
 A JavaFX desktop application for managing spare parts inventory at a tuk-tuk spares depot.
 Built as part of the CM1601 Programming Fundamentals coursework at IIT / RGU.
 
