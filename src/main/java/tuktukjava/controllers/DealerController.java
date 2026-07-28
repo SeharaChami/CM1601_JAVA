@@ -44,15 +44,18 @@ public class DealerController {
     }
 
     public void generateCards() {
+        if (dealers == null) return;
+
         List<Dealer> randDealers = dealers.getSortedByLocation();
 
-        Label[] names         = {name1, name2, name3, name4};
+        Label[] names = {name1, name2, name3, name4};
         Label[] codeLocations = {codeLocation1, codeLocation2, codeLocation3, codeLocation4};
-        Label[] phones        = {phone1, phone2, phone3, phone4};
+        Label[] phones = {phone1, phone2, phone3, phone4};
 
-        for (int i = 0; i < randDealers.size(); i++) {
+        for (int i = 0; i < randDealers.size() && i < names.length; i++) {
+            if (names[i] == null) continue;   // skip if FXML didn't inject it
             names[i].setText(randDealers.get(i).getName());
-            codeLocations[i].setText(randDealers.get(i).getId()+ " · " + randDealers.get(i).getLocation());
+            codeLocations[i].setText(randDealers.get(i).getId() + " · " + randDealers.get(i).getLocation());
             phones[i].setText(randDealers.get(i).getPhone());
         }
     }

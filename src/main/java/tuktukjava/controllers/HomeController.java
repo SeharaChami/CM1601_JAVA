@@ -140,7 +140,7 @@ public class HomeController {
         controller.setInventory(this.inventory);
         stage.setScene(new Scene(root, 730, 500));
     }
-
+@FXML
     public void onCartBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/com/example/tuktukapp/POS-view.fxml")));
@@ -150,7 +150,7 @@ public class HomeController {
         controller.setInventory(this.inventory);
         stage.setScene(new Scene(root, 730, 500));
     }
-
+    @FXML
     public void onSearchBtnClick(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/com/example/tuktukapp/searchItem-view.fxml")));

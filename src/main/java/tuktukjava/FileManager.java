@@ -68,12 +68,18 @@ public class FileManager {
         List<Dealer> dealers = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String line;
-        while((line = reader.readLine())!=null ){
-            String[] parts = line.split("\\|",-1);
-            if(parts.length == 4){
+        while ((line = reader.readLine()) != null) {
+            line = line.trim();
+            if (line.isEmpty()) continue;
+            String[] parts = line.split("\\|", -1);
+            if (parts.length == 4) {
+                for (int i = 0; i < 4; i++) {
+                    parts[i] = parts[i].trim();
+                }
                 dealers.add(new Dealer(parts));
             }
         }
+        reader.close();
         return dealers;
     }
     public static void saveItems(List<Item> items) throws IOException {
